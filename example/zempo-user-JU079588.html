@@ -1,0 +1,3400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=1024">
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="SHORTCUT ICON" href="imagens/favicon.png" />
+<title>ZEMPO - CBJ</title>
+<link href="estilos.css?v=6" rel="stylesheet" type="text/css" />
+<link href="estilos_impressao.css?v=2" rel="stylesheet" type="text/css" media="print" />
+<link href="ibox.css" rel="stylesheet" type="text/css" />
+<link href="dojo.css" rel="stylesheet" type="text/css" />
+<link href="jquery/nanoscroller.css" rel="stylesheet" type="text/css" />
+
+
+<script language="javascript">
+
+function isValueInArray(arr, val) {
+	inArray = false;
+	for (i = 0; i < arr.length; i++)
+		if (val == arr[i])
+			inArray = true;
+	return inArray;
+}
+</script>
+
+<script src="ibox.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="js/plugins/highslide/highslide-full.js"></script>
+<link href="js/plugins/highslide/highslide.css" rel="stylesheet" type="text/css" />
+
+<!-- Come�o do Highslide -->
+<script type="text/javascript">
+
+
+	hs.registerOverlay({
+	html: '<div class="closebutton" onclick="return hs.close(this)" title="Close"></div>',
+	position: 'top right',
+	fade: 2 // fading the semi-transparent overlay looks bad in IE
+	});
+
+    hs.graphicsDir = 'js/plugins/highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+	hs.wrapperClassName = 'draggable-header';
+	
+	hs.align = 'center';
+	hs.transitions = ['expand', 'crossfade'];
+	hs.fadeInOut = true;
+	hs.numberPosition = '';
+	hs.dimmingOpacity = 0.7;
+	
+	hs.preserveContent = false;
+		
+  
+	// Add the slideshow providing the controlbar and the thumbstrip
+	hs.addSlideshow({
+    slideshowGroup: ['fotos' , 'highslide_editar', 'highslide_detalhes'],
+		
+		interval: 3000,
+		repeat: true,
+		useControls: true,
+		overlayOptions: {
+			className: 'text-controls',
+			position: 'bottom center',
+			relativeTo: 'viewport',
+			offsetY: -60
+		}
+	});
+	
+	 
+
+</script>
+
+<!-- Fim do Highslide -->
+
+
+<link rel="stylesheet" type="text/css" href="css/superfish.css" media="screen">
+<link rel="stylesheet" type="text/css" href="jquery/script/jquery.jscrollpane.css" media="screen">
+
+
+<script src="jquery/jquery-1.7.2.min.js"></script>
+
+
+<script type="text/javascript" src="jquery/jquery.jclock.js"></script>
+<script type="text/javascript" src="jquery/jquery.autosize-min.js"></script>
+<script type="text/javascript" src="js/hoverIntent.js"></script>
+<script type="text/javascript" src="js/superfish.js"></script>
+
+<script type="text/javascript" src="jquery14/js/jquery-ui-1.8.9.custom.min.js"></script>
+
+<link type="text/css" href="css/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="jquery/jquery-ui-1.7.2.custom/development-bundle/ui/i18n/ui.datepicker-pt-BR.js"></script>
+
+<link type="text/css" href="css/ui.selectmenu.css" rel="stylesheet" />
+<script type="text/javascript" src="js/ui.selectmenu.js"></script>
+<script type="text/javascript" src="jquery/cookie.js"></script>
+  
+ 
+<!-- TOOLBAR -->
+<script src="jquery/toolbar/jquery.toolbar.min.js"></script>
+<link href="jquery/toolbar/jquery.toolbars.css" rel="stylesheet" />
+<link href="jquery/toolbar/bootstrap.icons.css" rel="stylesheet" />
+
+<!-- TOOLTIP PARA A OBSERVA��O NA LISTAGEM DE ATENDIMENTOS -->
+<script type="text/javascript" src="jquery/tipTipv13/jquery.tipTip.minified.js" ></script>
+<link type="text/css" href="jquery/tipTipv13/tipTip.css" rel="stylesheet" />
+<!-------------------- -->   
+<!-- fim sortable jquery --><script language="javascript" src="dojo.js"></script>
+<script language="javascript" src="dojochat.js"></script>
+<link href="jquery/facebox/src/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="jquery/facebox/src/facebox.js" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+		var somTipo = '.mp3';
+	if(navigator.userAgent.indexOf('Mac OS X') != -1)
+		if(navigator.userAgent.indexOf('Firefox') != -1)
+			somTipo = '.wav';
+	
+	
+	
+	DOJOChat.init();
+	DOJO.init();
+  $('a[rel*=facebox]').facebox({
+	  loadingImage : 'jquery/facebox/src/loading.gif',
+        closeImage   : 'jquery/facebox/src/closelabel.png'
+	  });
+	
+	$('#receiver').change(function(){
+			var  opt = $('#receiver option:selected').val();
+			if(opt == 1)
+			{
+				jQuery.facebox({ 
+				ajax: 'list_members.php',
+				loadingImage : 'jquery/facebox/src/loading.gif',
+        		closeImage   : 'jquery/facebox/src/closelabel.png'})
+			}
+	});
+	
+	$('#dojo-status').toolbar({
+		content: '#user-toolbar-options', 
+		position: 'right',
+		hideOnClick: true
+	});
+})
+</script>
+       
+      
+<script type="text/javascript" src="jquery/jquery-impromptu.2.7.js"></script>
+<script type="text/javascript" src="jquery/jquery.readonly.js"></script>
+<link href="jquery/jquery.readonly.css" rel="stylesheet" type="text/css" />
+<script src="scripts.js?r=1115011957" language="javascript" type="text/javascript"></script>
+<script src="jquery/jquery.counter-2.1.min.js" language="javascript" type="text/javascript"></script>
+
+<!--currency jquery-->
+<script type="text/javascript" src="jquery/maskMoney/jquery.maskMoney.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.currency').maskMoney({thousands:'.', decimal:','});
+	$('.porcento').maskMoney({decimal:',', precision: 4});
+	$('.Peso').maskMoney({thousands:'', decimal:'.'});
+});
+</script>
+<!--fim currency jquery-->
+
+<script type="text/javascript" src="jquery/jquery.maskedinput-1.2.2.min.js"></script>
+<script src="jquery/corner.js" language="javascript" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+					function jCalendario(id){
+							$(function(){
+								var readonly = $(id).attr('readonly');
+								//if(!readonly){
+									$(id).datepicker('destroy').datepicker({
+										duration: 'fast',
+										changeMonth: true,
+										changeYear: true,
+										onSelect: function(){
+											$(this).focus();
+										}
+									});
+									$(id).datepicker('show');//ap�s criar o calend�rio exibe no campo
+								//}
+							});
+						}
+			$(function(){
+						// initialise plugins
+						
+						
+													jQuery('ul.sf-menu').superfish({ 
+            
+														animation:   {opacity:'show',height:'show'}, // fade-in and slide-down animation 
+														speed:       300                          // faster animation speed 
+														
+													});
+														
+														
+													
+											 
+												$('.Telefone').mask("(99)9999-9999?9").focusout(function(){
+													         var phone, element;
+													element = $(this);
+													element.unmask();
+													phone = element.val().replace(/\D/g, '');
+													if(phone.length > 10) {
+														element.mask("(99)99999-999?9");
+													} else {
+														element.mask("(99)9999-9999?9");
+													}
+												}).trigger('focusout');
+													 
+														
+ 											  
+												$(".Data,.data,.Data2,.Data_30dias").mask("99/99/9999",{placeholder: "_"});
+												
+												
+												$(".Horario").mask("99:99",{placeholder: "0"});
+												
+												$(".Minutos").mask("9:99",{placeholder: "0"});
+												
+												$(".Segundos").mask("99:99:99",{placeholder: "0"});												
+												
+												
+												
+												
+												$('.Data,.data').datepicker({
+													duration: 'fast',
+													changeMonth: true,
+													changeYear: true,
+													showOn: "both",
+													buttonImage: "imagens/calendar.gif",
+													buttonImageOnly: true,
+													yearRange: "-100:+100", // this is the option you're looking for
+													minDate: new Date(1926,0, 1),
+													onClose: function(selectedDate, inst) {
+														var selected_date = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
+														new_date = new Date(selected_date.getTime() + 86400000);
+														new_date = jQuery.datepicker.formatDate('dd/mm/yyyy', new_date);
+														$( ".DataAte" ).datepicker( "option", "minDate", new_date);
+													  }
+ 													
+													
+													 
+												});
+							
+											 
+											 
+											 $('.Data2').datepicker({
+													duration: 'fast',
+													changeMonth: true,
+													changeYear: true,
+													showOn: "both",
+ 													buttonImage: "imagens/calendar.gif",
+													buttonImageOnly: true,
+													yearRange: "-100:+100", // this is the option you're looking for
+													minDate: new Date(1926,0, 1),
+													maxDate: new Date(2026, 4, 01),
+												});
+												
+												
+												
+												$('.Data_inicio').datepicker({
+													duration: 'fast',
+													changeMonth: true,
+													changeYear: true,
+													showOn: "both",
+													buttonImage: "imagens/calendar.gif",
+													buttonImageOnly: true,
+													yearRange: "-100:+100", // this is the option you're looking for
+													minDate: new Date(1926,0, 1),
+													onClose: function(selectedDate, inst) {
+														var selected_date = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
+														new_date = new Date(selected_date.getTime());
+														$( ".Data_termino" ).datepicker( "option", "minDate", new_date);
+													  }
+ 													 
+												});
+												
+												
+												
+												$('.Data_inicio_inscricoes').datepicker({
+													duration: 'fast',
+													changeMonth: true,
+													changeYear: true,
+													showOn: "both",
+													buttonImage: "imagens/calendar.gif",
+													buttonImageOnly: true,
+													yearRange: "-100:+100", // this is the option you're looking for
+													minDate: new Date(1926,0, 1),
+													onClose: function(selectedDate, inst) {
+														var selected_date = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
+														new_date = new Date(selected_date.getTime());
+														$( ".Data_termino_inscricoes" ).datepicker( "option", "minDate", new_date);
+													  }
+ 													 
+												});
+
+
+												$('.Data_inicio_credenciamento_online').datepicker({
+													duration: 'fast',
+													changeMonth: true,
+													changeYear: true,
+													showOn: "both",
+													buttonImage: "imagens/calendar.gif",
+													buttonImageOnly: true,
+													yearRange: "-100:+100", // this is the option you're looking for
+													minDate: new Date(1926,0, 1),
+													onClose: function(selectedDate, inst) {
+														var selected_date = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
+														new_date = new Date(selected_date.getTime());
+														$( ".Data_termino_credenciamento_online" ).datepicker( "option", "minDate", new_date);
+													  }
+ 													 
+												});
+
+
+
+
+												var currentYear = (new Date()).getFullYear();
+												$('.Data_30dias').datepicker({
+													duration: 'fast',
+													changeMonth: true,
+													changeYear: true,
+													showOn: "both",
+													buttonImage: "imagens/calendar.gif",
+													buttonImageOnly: true,
+													yearRange: currentYear + ":" + currentYear,
+													minDate: new Date(new Date().getTime()+(30*24*60*60*1000)),
+													maxDate: new Date(2023, 0, 31),
+
+ 													 
+												});
+												
+												
+												
+											 
+												
+ 
+
+												
+												
+												
+												$(".Cep").mask("99999-999",{placeholder: "_"});
+												
+												$(".Cpf").mask("999.999.999-99",{placeholder: "_"});
+												
+												$(".Cnpj").mask("99.999.999/9999-99",{placeholder: "_"});
+												
+												$(".Numero").keypress(function () { 
+															var tecla=(window.event)?event.keyCode:e.which;
+															
+															if(tecla != '9'){
+																if((tecla > 47 && tecla < 58)) return true;
+																else{
+																if (tecla != 8) return false;
+																else return true;
+																}
+																
+															}    
+												});    
+							
+							
+												$.mask.definitions['~']='[.,]';   
+												$(".Porcentagem").mask("99~99",{placeholder: "0"});
+												$(".cref").mask("999999-a-aa",{placeholder: "_"});
+							
+											 
+												
+												
+												
+																								
+										
+																								
+									
+						//});
+				
+				
+						// Datepicker
+						$('.calendario').datepicker({
+							inline: true
+						});
+
+			});
+			
+			
+			  
+								
+					
+			
+
+</script>
+  
+   
+
+
+
+        
+
+
+
+
+
+
+        
+        
+<script type="text/javascript" src="jquery/jquery-isvalid.js"></script>
+<link rel="stylesheet" href="css/validationEngine.jquery.css" type="text/css"/>
+<script src="js/jquery.validationEngine-pt.js" type="text/javascript"></script>
+<script src="js/jquery.validationEngine.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="jquery/pnotify/pnotify.custom.js"></script>
+<link href="jquery/pnotify/pnotify.custom.css" media="all" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- AUTOCOMPLETE -->
+<script>
+
+jQuery.fn.extend({
+ propAttr: $.fn.prop || $.fn.attr
+});
+
+$.zIndex = $.fn.zIndex = function (opt) {            
+        var def = { inc: 10, group: "*" };
+        $.extend(def, opt);
+        var zmax = 0;
+        $(def.group).each(function () {
+            var cur = parseInt($(this).css('z-index'));
+            zmax = cur > zmax ? cur : zmax;
+        });
+        if (!this.jquery)
+            return zmax;
+
+        return this.each(function () {
+            zmax += def.inc;
+            $(this).css("z-index", zmax);
+        });
+    }
+</script>
+
+<script src="jquery/jquery.ui.core.min.js"></script>
+<script src="jquery/jquery.ui.widget.min.js"></script>
+<script src="jquery/jquery.ui.position.min.js"></script>
+<script src="jquery/jquery.ui.autocomplete.min.js"></script>
+
+
+
+
+
+
+</head><body  onLoad="activateMenu('nav');activateMenu('vertnav');document.getElementById('esconde').style.display='block';document.getElementById('progress').style.display='none';"        >
+<script type="text/javascript" src="tooltip/wz_tooltip.js"></script> 
+<script type="text/javascript" src="tooltip/tip_balloon.js"></script> 
+<script type="text/javascript" src="tooltip/tip_centerwindow.js"></script> 
+<script type="text/javascript" src="tooltip/tip_followscroll.js"></script>
+
+<div id="topo">
+  <div id="topo_esquerda">
+    <div class="branco fonte10" style="height:15px;"><a href="?secao=main"><img src="imagens/imovel_home.png" style='vertical-align:top;'>&nbsp;<span class="branco"><strong>IN&Iacute;CIO</strong></span></a> &nbsp; <a href="https://cbj.com.br" target="_blank"><img src="imagens/url.png" style='vertical-align:middle;'>&nbsp;<span class="branco"><strong>WEBSITE CBJ</strong></span></a> </div>
+    <div style="font-size:15px;padding-top:13px;color:#999999;"><a href="?secao=main"><img src="imagens/logo.png" alt="logo" width="293" height="46" border="0" /></a></div>
+  </div>
+  <div id="topo_direita">
+    <div id="logout">
+            <ul> 
+      
+              <li ><a href="mailto:suporte@zempo.com.br"><span class='fonte10' style='color:#FFFFCC'><strong>suporte@zempo.com.br</strong></span></a></li>
+      
+      
+                
+         <li   class="	" ><a href="?secao=agenda"  title="Agenda"><img src="imagens/agenda.png" alt="agenda" style='vertical-align:middle;' width='14'  border="0" />&nbsp;AGENDA</a></li>
+
+  			<li class="nivel_menu_downloads" ><a href="?secao=downloads"><img src="imagens/download.gif" alt="downloads" style='vertical-align:middle;' width='14'  border="0" />&nbsp;DOWNLOADS</a></li>
+        
+              
+        <li   ><a href="?secao=pessoas_editar&detalhes=1&id=79588"   title="Meus Dados"><img src="imagens/masterplan.gif" alt="status" style='vertical-align:middle;'   border="0" />&nbsp;MEUS DADOS</a></li>
+        
+        <li   class="nivel_menu_senha" ><a href="senha.php?rand=1115011957"  title="Senha - Altera��o" onclick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Senha - Altera��o', width:650, height:350 } )" ><img src="imagens/lock.png" alt="senha" style='vertical-align:middle;'   border="0" />&nbsp;ALTERAR SENHA</a></li>
+        
+				
+		
+	
+       
+        <li   class="nivel_menu_manual" ><a href="?secao=manual&numero_escolhido=&#numero_"  ><img src="imagens/help.png" alt="manual" style='vertical-align:middle;'   border="0" />&nbsp;AJUDA</a></li> 
+       
+        <li ><a href="logout.php" style='margin-left:20px;'>SAIR</a><a href="logout.php"><img src="imagens/sair.gif" alt="sair" width="12" height="12" border="0" /></a></li>
+      </ul>
+          </div>
+    <div id="topo_chamadas">
+            <div style="float:left;padding-top:5px;max-width:220px;" class='fonte11'><strong>Bem Vindo(a) </strong><span class='vermelho fonte13'><strong>
+        Ivan Diniz de Ara�jo J�nior        </strong></span><br />
+        <span class='fonte10'>
+        &Uacute;ltimo acesso em 01/05/2026 15:51:44        </span> </div>
+      <div style="float:left;">
+        <img src='arquivos/pessoas/114451110225Imagem_do_WhatsApp_de_2024-10-30_A(s)_10.40.03_189f5e66.jpg' alt='logotipo' class='foto_topo'/>      </div>
+          </div>
+    <div id="topo_busca" class="fonte10">
+            <form id="form_palavra" action="javascript:void()" onSubmit="buscar()">
+      <input type="image" name="imageField" src="imagens/zoom.png" style="position:absolute;margin-top:8px;margin-left:33%;"  id="buscar_palavrachave"  />
+       <input name="palavra" type="text" class="formulario verde  validate[minSize[3]] " id="palavra" style="width:79%;margin-left:10%;font-size:13px;font-weight:bold;padding:8px 30px 8px 8px;"    placeholder="O que voc� procura?"   />
+       </form>
+      <ul>
+      <li class='ui-menu ui-autocomplete-options' >
+      <div id="ui-autocomplete-group"   onmouseover="Tip('<strong>Defina em que locais pretende buscar</strong>', BALLOON, true, ABOVE, true, OFFSETX, -17, PADDING, 8 , WIDTH, 200 )" onmouseout="UnTip()"     >
+	   <input name='auto_atletas' id='auto_atletas' type='checkbox' value='1'  checked='checked'><label for="auto_atletas">ATLETAS</label>	   <input name='auto_arbitros' id='auto_arbitros' type='checkbox' value='1'   checked='checked'><label for="auto_arbitros">&Aacute;RBITROS</label>	   <input name='auto_clubes' id='auto_clubes' type='checkbox' value='1'   checked='checked'><label for="auto_clubes">CLUBES</label>	   <input name='auto_competicoes' id='auto_competicoes' type='checkbox' value='1'  checked='checked'><label for="auto_competicoes">COMPETI&Ccedil;&Otilde;ES</label>        <input name='auto_delegacoes' id='auto_delegacoes' type='checkbox' value='1'  checked='checked'><label for="auto_delegacoes">DELEGA&Ccedil;&Otilde;ES</label>	   <input name='auto_equipe' id='auto_equipe' type='checkbox' value='1'   checked='checked'><label for="auto_equipe">EQUIPE CBJ</label>        <input name='auto_eventos' id='auto_eventos' type='checkbox' value='1'  checked='checked'><label for="auto_eventos">EVENTOS</label>	   <input name='auto_federacoes' id='auto_federacoes' type='checkbox' value='1'   checked='checked'><label for="auto_federacoes">FEDERA&Ccedil;&Otilde;ES</label>	   <input name='auto_instituicoes' id='auto_instituicoes' type='checkbox' value='1'   checked='checked'><label for="auto_instituicoes">INSTITUI&Ccedil;&Otilde;ES</label>        <input name='auto_kodanshas' id='auto_kodanshas' type='checkbox' value='1'   checked='checked'><label for="auto_kodanshas">KODANSHAS</label>	  <input name='auto_tecnicos' id='auto_tecnicos' type='checkbox' value='1'   checked='checked'><label for="auto_tecnicos">T&Eacute;CNICOS</label>      </div>
+	   </li>
+      </ul>
+ 
+            
+      
+<script>
+
+
+
+///FUNCOES DO AUTOCOMPLETE
+
+
+$.widget( "custom.catcomplete", $.ui.autocomplete, {
+	
+	
+    _renderMenu: function( ul, items ) {
+      var that = this,
+        currentCategory = "";
+		
+		
+      $.each( items, function( index, item ) {
+		
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category' data-url='"+item.pagina+"'>" + item.category + "</li>" );
+          currentCategory = item.category;
+	 
+		  
+        }
+        that._renderItem( ul, item );
+		
+      });
+	  
+	}
+	  
+ 	
+  });
+
+
+
+	
+
+$("#palavra").catcomplete(
+
+
+{
+	 	minLength:2,
+		
+ 		 source:'retorno_busca.php?nivel=4&id=79588' ,
+ 		 select: function (event, ui) {
+			var label = ui.item.label;
+			var value = ui.item.value;
+			var pagina = ui.item.pagina;
+			var pagina_detalhes = ui.item.pagina_detalhes;
+			var palavra = ui.item.palavra;
+			
+  			
+			if (palavra){
+				$("#palavra").attr("value",palavra);
+				location.href="index.php?secao="+pagina_detalhes+"_editar&id="+value+"&detalhes=1&palavra="+palavra+"";
+				
+			}
+			
+ 			
+			
+ 	 		return false;
+
+		   
+		},
+		search: function( event, ui ) { 
+		
+		
+				var auto_atletas=$("#auto_atletas").is(":checked");
+				var auto_arbitros=$("#auto_arbitros").is(":checked");
+				var auto_clubes=$("#auto_clubes").is(":checked");
+				var auto_competicoes=$("#auto_competicoes").is(":checked");
+				var auto_delegacoes=$("#auto_delegacoes").is(":checked");
+				var auto_equipe=$("#auto_equipe").is(":checked");
+				var auto_eventos=$("#auto_eventos").is(":checked");
+				var auto_federacoes=$("#auto_federacoes").is(":checked");
+				var auto_instituicoes=$("#auto_instituicoes").is(":checked");
+				var auto_tecnicos=$("#auto_tecnicos").is(":checked");
+				var auto_kodanshas=$("#auto_kodanshas").is(":checked");
+ 		 
+ 		 
+	
+			// update source url by adding new GET params
+			$(this).catcomplete( 'option', 'source', 'retorno_busca.php?nivel=4&id=79588&auto_atletas='+auto_atletas+'&auto_arbitros='+auto_arbitros+'&auto_clubes='+auto_clubes+'&auto_competicoes='+auto_competicoes+'&auto_equipe='+auto_equipe+'&auto_delegacoes='+auto_delegacoes+'&auto_eventos='+auto_eventos+'&auto_federacoes='+auto_federacoes+'&auto_instituicoes='+auto_instituicoes+'&auto_tecnicos='+auto_tecnicos+'&auto_kodanshas='+auto_kodanshas+'' );
+		
+		},open: function( event, ui ) {
+			$(".ui-autocomplete").css("position", "absolute");
+		 	$(".ui-autocomplete-options").show();
+			$(".ui-autocomplete").offset({ top: 115});
+			$('.ui-autocomplete-category').each(function() {
+				
+				if ($(this).attr("data-url")!="undefined"){ $(this).append("<img src='imagens/add.png' style='float:right' title='visualizar m�dulo'>");} else{$(this).css("cursor","auto");}
+			  })
+ 
+		
+		},close: function( event, ui ) {
+			$(".ui-autocomplete-options").hide(); 
+		}
+		 
+		 
+	 
+})
+
+
+
+
+
+
+	$('.ui-autocomplete-options input').live("click",function() {
+		
+ 			$("#palavra").catcomplete('search');
+		
+	});
+	
+	
+	$('#palavra').live("click",function() {
+		
+ 			$("#palavra").catcomplete('search');
+		
+	});
+	
+	
+$(window).resize(function() {
+    $( "#palavra" ).catcomplete( "search" );
+});
+	
+	
+
+$('.ui-autocomplete-category').live("click",function() {
+		
+		var pagina=$(this).attr("data-url");
+		var palavra=$("#palavra").val();
+ 			
+		if (pagina!="undefined"){location.href="index.php?secao="+pagina+"&palavra="+palavra+"";}
+		
+});
+
+
+
+
+
+
+function buscar() {
+	
+    $("#palavra").catcomplete('search');
+	
+	
+}
+
+ 
+  
+  
+  $(document).ready(function(){
+		 
+  $("#form_palavra").validationEngine();
+  $(".ui-autocomplete-options input" ).button();
+  $("#ui-autocomplete-group" ).buttonset();
+ 
+  });
+  
+  
+  
+ $("#palavra").mouseover(zoomDisable).click(zoomDisable).focus(zoomDisable).mousedown(zoomEnable).focusout(zoomEnable);
+function zoomDisable(){
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="width=1024, user-scalable=no" >');
+}
+function zoomEnable(){
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="width=1024"  >');
+}
+	 
+
+</script>
+    </div>
+  </div>
+</div>
+</div>
+<div id="menu">
+   <ul   class="sf-menu " >
+    <li style="overflow:hidden;height:20px;"><a href="portal"><img src="imagens/apontamento.png" style='vertical-align:top;'>&nbsp;<span style='color:#FFFFCC'>Portal</span></a></li>
+    
+
+ 
+
+  <li class="" ><a href="#">Comunidade</a>
+
+   <ul style="width:110px;">
+       
+
+
+
+    <li class="nivel_menu_entidades" ><a href="#">Entidades</a>
+      <ul style="width:96px;margin-left:0px;">
+        <li class="nivel_menu_federacoes" ><a href="?secao=federacoes">Federa��es</a>
+          <ul style="width:74px;margin-left:-8px;">
+            <li class="nivel_menu_federacoes" ><a href="?secao=federacoes">Listar</a></li>
+                                    <li class='nivel_menu_federacoes_contatos'><a href="federacoes_selecao.php?pagina=federacoes_contatos"  onclick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Selecione a federa��o que deseja gerenciar', width:800, height:500 } )" title='Selecione a federa��o que deseja gerenciar'  >Contatos</a></li>          </ul>
+        </li>
+                <li class="nivel_menu_clubes" ><a href="?secao=clubes">Clubes</a>
+          <ul style="width:74px;margin-left:-8px;">
+            <li class="nivel_menu_clubes" ><a href="?secao=clubes">Listar</a></li>
+                                    <li class='nivel_menu_clubes_contatos'><a href="clubes_selecao.php?pagina=clubes_contatos"  onclick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Selecione o clube que deseja gerenciar', width:800, height:500 } )" title='Selecione o clube que deseja gerenciar'  >Contatos</a></li>          </ul>
+        </li>
+                
+        
+        
+         <li class="nivel_menu_instituicoes" ><a href="?secao=instituicoes">Institui��es</a>
+          <ul style="width:74px;margin-left:-8px;">
+            <li class="nivel_menu_instituicoes" ><a href="?secao=instituicoes">Listar</a></li>
+                                              </ul>
+        </li>
+                
+        
+        
+         
+        
+        
+        
+      </ul>
+    </li>
+        <li class="nivel_menu_pessoas" ><a href="#">Pessoas</a>
+      <ul style="width:145px;">
+        <li class="nivel_menu_atletas" ><a href="?secao=atletas">Atletas Federados</a>
+          <ul style="width:130px;margin-left:40px;">
+            <li class="nivel_menu_atletas" ><a href="?secao=atletas">Listar</a></li>
+                                              </ul>
+        </li>
+                
+        
+         
+                 
+        
+        
+        
+        <li class="nivel_menu_tecnicos" ><a href="?secao=tecnicos">Treinadores</a>
+          <ul style="width:74px;margin-left:40px;">
+            <li class="nivel_menu_tecnicos" ><a href="?secao=tecnicos">Listar</a></li>
+                                  </ul>
+        </li>
+                
+        
+        
+        
+        <li class="nivel_menu_arbitros" ><a href="?secao=arbitros">�rbitros</a>
+          <ul style="width:74px;margin-left:40px;">
+            <li class="nivel_menu_arbitros" ><a href="?secao=arbitros">Listar</a></li>
+                                  </ul>
+        </li>
+                
+        
+         <li class="nivel_menu_delegacoes" ><a href="?secao=delegacoes">Delega��es</a>
+          <ul style="width:74px;margin-left:40px;">
+            <li class="nivel_menu_delegacoes" ><a href="?secao=delegacoes">Listar</a></li>
+                                  </ul>
+        </li>
+                
+       
+        
+                <li class="nivel_menu_equipe" ><a href="?secao=equipe">Equipe CBJ</a>
+          <ul style="width:110px;margin-left:40px;">
+            <li class="nivel_menu_equipe" ><a href="?secao=equipe">Listar</a>
+                                              </ul>
+        </li>
+                
+        
+        
+        
+         
+        <li class="nivel_menu_kodanshas" ><a href="?secao=atletas&delimita_variaveis=1&kodansha=1&kodansha_menu=1&delimita_variaveis=1">Kodanshas</a>
+          <ul style="width:74px;margin-left:40px;">
+            <li class="nivel_menu_kodanshas" ><a href="?secao=atletas&delimita_variaveis=1&kodansha=1&kodansha_menu=1&delimita_variaveis=1">Listar</a></li>
+                                  </ul>
+        </li>
+                
+        
+        
+        
+        
+         <li class="nivel_menu_federacoes" ><a href="?secao=presidentes">Presidentes</a></li>
+        
+
+                 
+        
+        
+      </ul>
+    </li>
+       
+ </ul>
+</li>
+
+
+
+
+    
+    
+  
+   <li ><a href="ranking_selecao.php"  title="Ranking" onClick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Ranking', width:650, height:560 } )" >Ranking</a></li> 
+
+ 
+ 
+ 
+  
+  
+
+ 
+
+  <li class="" ><a href="#">Calend�rio</a>
+
+   <ul style="width:280px;">
+       
+
+         
+
+
+        <li class="nivel_menu_competicoes" ><a href="javascript:void(0)">Competi��es</a>
+              <ul style="width:180px;margin-left:170px;">
+               <li class="nivel_menu_competicoes" ><a href="?secao=competicoes_calendario">Calend�rio Nacional</a></li>
+                <li class="nivel_menu_competicoes" ><a href="?secao=competicoes">Listar Todas</a>
+                
+                	<ul style="width:200px;margin-left:70px;">
+                    
+                        <li><a href='?secao=competicoes&ambito=1'>Nacional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li><li><a href='?secao=competicoes&ambito=1&inicio=01/01/2012&inicio2=31/12/2012'>2012</a></li></ul></li><li><a href='?secao=competicoes&ambito=2'>Estadual</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2010&inicio2=31/12/2010'>2010</a></li><li><a href='?secao=competicoes&ambito=2&inicio=01/01/2008&inicio2=31/12/2008'>2008</a></li></ul></li><li><a href='?secao=competicoes&ambito=3'>Interestadual � Interclubes</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li><li><a href='?secao=competicoes&ambito=3&inicio=01/01/2012&inicio2=31/12/2012'>2012</a></li></ul></li><li><a href='?secao=competicoes&ambito=4'>Clube</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=4&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li></ul></li><li><a href='?secao=competicoes&ambito=5'>Internacional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2012&inicio2=31/12/2012'>2012</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2011&inicio2=31/12/2011'>2011</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2010&inicio2=31/12/2010'>2010</a></li><li><a href='?secao=competicoes&ambito=5&inicio=01/01/2009&inicio2=31/12/2009'>2009</a></li></ul></li><li><a href='?secao=competicoes&ambito=6'>Regional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=6&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li></ul></li><li><a href='?secao=competicoes&ambito=7'>Estudantil Nacional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=7&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li></ul></li><li><a href='?secao=competicoes&ambito=8'>Estudantil Estadual</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=8&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li></ul></li><li><a href='?secao=competicoes&ambito=9'>Governamental Nacional</a><ul  style='width:50px;margin-left:85px;'></ul></li><li><a href='?secao=competicoes&ambito=10'>Governamental Estadual</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=competicoes&ambito=10&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li></ul></li>                
+        		
+        			</ul>
+                
+                </li>
+                
+            
+                
+                
+                        
+        <li class="nivel_menu_competicoes" ><a href="competicoes_busca.php?rand=1115011957"  title="Competi��es - Busca" onClick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Competi��es - Busca', width:800, height:500 } )" >Buscar</a></li>                
+        
+         
+                
+                        
+                        
+                        
+        
+                
+        
+                
+                        
+                        </li>
+                
+                
+                
+                
+                        
+        
+                
+        
+                
+                        
+                        
+        <!---->
+                
+                     
+             
+         <li class='nivel_menu_competicoes_placar'>
+        <a  href="placar.php" onClick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Placar CBJ', width:700, height:530 } )" title='Download do Placar CBJ'  >Placar</a></li>
+
+        <li ><a   href="modelos.php" onClick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Modelos de S�mulas', width:800, height:350 } )" title='Modelos de S�mulas' >Modelos de S�mulas</a></li>
+         
+                        
+                     
+              </ul>
+            </li>
+                        
+            
+          
+             
+        <li class="nivel_menu_eventos" ><a href="javascript:void(0)">Eventos</a>
+              <ul style="width:180px;margin-left:170px;">
+               <li class="nivel_menu_eventos" ><a href="?secao=eventos_calendario&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1">Calend�rio Nacional</a></li>
+ 
+
+
+
+                <li class="nivel_menu_eventos" ><a href="?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1">Listar Todas</a>
+                
+                  <ul style="width:200px;margin-left:70px;">
+                    
+                        <li><a href='?secao=competicoes&ambito=1'>Nacional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=1&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li></ul></li><li><a href='?secao=competicoes&ambito=2'>Estadual</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2014&inicio2=31/12/2014'>2014</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2013&inicio2=31/12/2013'>2013</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2012&inicio2=31/12/2012'>2012</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2011&inicio2=31/12/2011'>2011</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=2&inicio=01/01/2010&inicio2=31/12/2010'>2010</a></li></ul></li><li><a href='?secao=competicoes&ambito=3'>Interestadual � Interclubes</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=3&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li></ul></li><li><a href='?secao=competicoes&ambito=4'>Clube</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/2015&inicio2=31/12/2015'>2015</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=4&inicio=01/01/1967&inicio2=31/12/1967'>1967</a></li></ul></li><li><a href='?secao=competicoes&ambito=5'>Internacional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=5&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=5&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=5&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li></ul></li><li><a href='?secao=competicoes&ambito=6'>Regional</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2026&inicio2=31/12/2026'>2026</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2025&inicio2=31/12/2025'>2025</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2024&inicio2=31/12/2024'>2024</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2023&inicio2=31/12/2023'>2023</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2022&inicio2=31/12/2022'>2022</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2020&inicio2=31/12/2020'>2020</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2019&inicio2=31/12/2019'>2019</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2018&inicio2=31/12/2018'>2018</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2017&inicio2=31/12/2017'>2017</a></li><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=6&inicio=01/01/2016&inicio2=31/12/2016'>2016</a></li></ul></li><li><a href='?secao=competicoes&ambito=7'>Estudantil Nacional</a><ul  style='width:50px;margin-left:85px;'></ul></li><li><a href='?secao=competicoes&ambito=8'>Estudantil Estadual</a><ul  style='width:50px;margin-left:85px;'><li><a href='?secao=eventos&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1&ambito=8&inicio=01/01/2021&inicio2=31/12/2021'>2021</a></li></ul></li><li><a href='?secao=competicoes&ambito=9'>Governamental Nacional</a><ul  style='width:50px;margin-left:85px;'></ul></li><li><a href='?secao=competicoes&ambito=10'>Governamental Estadual</a><ul  style='width:50px;margin-left:85px;'></ul></li>                
+            
+              </ul>
+                
+                </li>
+             
+             
+         
+                
+             
+                
+                        
+        <li class="nivel_menu_eventos" ><a href="eventos_busca.php?rand=1115011957&oculta_exame=1&oculta_exame=1&oculta_credenciamento=1&oculta_declaracao=1&oculta_regularizacao=1"  title="Eventos - Busca" onClick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'Eventos - Busca', width:800, height:500 } )" >Buscar</a></li>                
+        
+                 
+                   
+                 
+                            
+                   
+                            
+          
+
+                   
+                    
+                               
+                    
+                  
+        
+                     
+
+          </ul>
+        </li>
+        <li><a class="link-menu-mobile" href="https://cbj.com.br/public/uploads/arquivos_calendario/20260223155841-calendario-cbj_2026_v.2_11-02.pdf" target="_blank">Calend�rio Nacional Completo PDF</a></li><li><a class="link-menu-mobile" href="https://cbj.com.br/public/uploads/documentos/arquivo_cbj_100855090221.pdf" target="_blank">Regulamento Nacional de Eventos - RNE 2021</a></li>  
+  
+  
+  
+  
+  
+          </ul>
+        </li>
+                    
+  
+      
+
+        <li class="nivel_menu_eventos" ><a href="?secao=eventos_calendario&regularizacao=1">REGULARIZA��O</a></li>
+      
+
+  
+    
+    
+          
+   
+    <li class="nivel_menu_solicitacoes" ><a href="#">Solicita��es</a>
+      <ul style="width:400px;">
+
+           <li class="nivel_menu_eventos" ><a href="?secao=eventos_calendario&adesao=1">Ades�o</a></li>
+
+  
+      </ul>
+    </li>
+
+
+    
+
+
+
+
+                    
+  
+  
+  
+    
+    
+
+
+
+
+
+
+
+
+                    
+  
+  
+  
+
+
+
+
+    
+        
+     
+	 
+    
+     
+     
+     
+     
+    
+        
+      
+      
+       
+
+
+
+
+
+
+
+
+    
+
+
+          
+    
+
+
+       <li class="" ><a href="#">Capacita��o</a>
+        
+        
+        
+        <ul style="width:180px;">
+           <li class="" ><a href="cursodearbitragem" target="_blank">Arbitragem</a></li>
+        
+    </ul>
+  
+        
+        
+        </li>
+
+
+
+  </ul>
+
+  
+    
+  
+  
+  
+  </div>
+
+
+
+
+
+<div id="conteudo"  style="clear:both;   " >
+  <div id="bg"  style="min-height:px;height:px;  "  >
+    <div id="progress" align="center" class='centraliza'><br />
+      <br />
+      <br />
+      <img src="imagens/loading.gif" alt="Carregando..."  /></div>
+    <div id="esconde" style="display:none">
+      
+
+
+
+
+
+
+
+
+<style>
+
+
+label,.ui-select-menu { float: left; margin-right: 10px; }
+/*select with custom icons*/
+body a.customicons { height: 23px;}
+body .customicons li a, body a.customicons span.ui-selectmenu-status { line-height: 15px; padding-left: 30px !important; }
+#graduacao-menu{max-height:280px;min-width:200px!important;}
+.ui-widget {font-size:11px;}
+.faixa_1,.faixa_1:hover{ background: url(arquivos/graduacoes/102704270712branca.png) 5px 4px no-repeat;background-size:15px;}.faixa_22,.faixa_22:hover{ background: url(arquivos/graduacoes/102942270712branca_cinza.png) 5px 4px no-repeat;background-size:15px;}.faixa_2,.faixa_2:hover{ background: url(arquivos/graduacoes/103010270712cinza.png) 5px 4px no-repeat;background-size:15px;}.faixa_3,.faixa_3:hover{ background: url(arquivos/graduacoes/103313270712cinza_azul.png) 5px 4px no-repeat;background-size:15px;}.faixa_4,.faixa_4:hover{ background: url(arquivos/graduacoes/103333270712azul.png) 5px 4px no-repeat;background-size:15px;}.faixa_5,.faixa_5:hover{ background: url(arquivos/graduacoes/103434270712azul_amarela.png) 5px 4px no-repeat;background-size:15px;}.faixa_10,.faixa_10:hover{ background: url(arquivos/graduacoes/103509270712amarela.png) 5px 4px no-repeat;background-size:15px;}.faixa_11,.faixa_11:hover{ background: url(arquivos/graduacoes/103604270712amarela_laranja.png) 5px 4px no-repeat;background-size:15px;}.faixa_6,.faixa_6:hover{ background: url(arquivos/graduacoes/103630270712laranja.png) 5px 4px no-repeat;background-size:15px;}.faixa_7,.faixa_7:hover{ background: url(arquivos/graduacoes/103719270712verde.png) 5px 4px no-repeat;background-size:15px;}.faixa_8,.faixa_8:hover{ background: url(arquivos/graduacoes/103750270712roxa.png) 5px 4px no-repeat;background-size:15px;}.faixa_9,.faixa_9:hover{ background: url(arquivos/graduacoes/103907270712marrom.png) 5px 4px no-repeat;background-size:15px;}
+</style>
+ 
+ 
+
+
+<script> 
+
+
+
+	$(function(){
+			
+
+			$('select#graduacao').selectmenu({style:"dropdown",transferClasses:"false"});
+			
+		 
+			
+		});
+		
+
+
+
+
+
+ 
+
+		
+	function atualiza_classe(campo){	
+	
+	
+		
+		
+		
+		  var valor_nascimento=$("#nascimento").val();
+		  var valor_sexo=$("#sexo").val();
+		  var valor_federacao=$("#federacao").val();
+		   var valor_graduacao=$("#graduacao").val();
+		  
+		  
+		  if (valor_graduacao=="") {
+			  
+			  
+			  alert('Informe a GRADUA��O para definir sua classe!');
+ 		  
+		  
+		  } else if (valor_federacao=="") {
+			  
+			  
+			  alert('Informe a FEDERA��O para definir sua classe!');
+			  
+		  
+		  
+		  } else if (valor_sexo=="") {
+			  
+			  
+			  alert('Informe o SEXO para definir sua classe!');
+			 
+		  
+		  
+		  } else  if (valor_nascimento=="" && campo=="graduacao") {
+			  
+			 
+		  
+		  } else {
+		 
+	 
+	 
+			$.post("retorno_classes.php", { nascimento:  valor_nascimento, sexo:valor_sexo, federacao:valor_federacao, graduacao:valor_graduacao },function(data){
+				
+				
+				 
+									
+				if(data!= ''){	
+				
+				
+					data=data.split("//");
+					 
+					var data1;
+					var data2;
+					var data3;
+					var data4;
+					var data5;
+					var data6;
+					var data7;
+					var data8;
+					var data9;
+					var data10;
+					var data11;
+					var data12;
+					var data13;
+					var data14;
+					var data15;
+					
+					  
+					data1=data[0].split("&");
+					if (data[1]){data2=data[1].split("&");} else { $('#classe2').val("");}
+					if (data[2]){data3=data[2].split("&");} else { $('#classe3').val("");}
+					if (data[3]){data4=data[3].split("&");} else { $('#classe4').val("");}
+					if (data[4]){data5=data[4].split("&");} else { $('#classe5').val("");}
+					if (data[5]){data6=data[5].split("&");} else { $('#classe6').val("");}
+					
+					if (data[6]){data7=data[6].split("&");} else { $('#classe7').val("");}
+					if (data[7]){data8=data[7].split("&");} else { $('#classe8').val("");}
+					if (data[8]){data9=data[8].split("&");} else { $('#classe9').val("");}
+					if (data[9]){data10=data[9].split("&");} else { $('#classe10').val("");}
+
+					if (data[10]){data11=data[10].split("&");} else { $('#classe11').val("");}
+					if (data[11]){data12=data[11].split("&");} else { $('#classe12').val("");}
+					if (data[12]){data13=data[12].split("&");} else { $('#classe13').val("");}
+					if (data[13]){data14=data[13].split("&");} else { $('#classe14').val("");}
+					if (data[14]){data15=data[14].split("&");} else { $('#classe15').val("");}
+					
+					
+ 					
+					
+					if (data1[1]) {
+					
+						
+					 
+						$('#classe').val(parseInt(data1[0]));
+						if (data2){$('#classe2').val(parseInt(data2[0]));		}	
+						if (data3){$('#classe3').val(parseInt(data3[0]));		}	
+						if (data4){$('#classe4').val(parseInt(data4[0]));		}	
+						if (data5){$('#classe5').val(parseInt(data5[0]));		}	
+						if (data6){$('#classe6').val(parseInt(data6[0]));		}			
+						if (data7){$('#classe7').val(parseInt(data7[0]));		}
+						if (data8){$('#classe8').val(parseInt(data8[0]));		}
+						if (data9){$('#classe9').val(parseInt(data9[0]));		}
+						if (data10){$('#classe10').val(parseInt(data10[0]));		}	
+						if (data11){$('#classe11').val(parseInt(data11[0]));		}	
+						if (data12){$('#classe12').val(parseInt(data12[0]));		}	
+						if (data13){$('#classe13').val(parseInt(data13[0]));		}	
+						if (data14){$('#classe14').val(parseInt(data14[0]));		}	
+						if (data15){$('#classe15').val(parseInt(data15[0]));		}			
+						
+						if (data15) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1]+"/"+data10[1]+"/"+data11[1]+"/"+data12[1]+"/"+data13[1]+"/"+data14[1]+"/"+data15[1];}
+						else if (data14) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1]+"/"+data10[1]+"/"+data11[1]+"/"+data12[1]+"/"+data13[1]+"/"+data14[1];}
+						else if (data13) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1]+"/"+data10[1]+"/"+data11[1]+"/"+data12[1]+"/"+data13[1];}
+						else if (data12) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1]+"/"+data10[1]+"/"+data11[1]+"/"+data12[1];}
+						else if (data11) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1]+"/"+data10[1]+"/"+data11[1];}
+						else if (data10) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1]+"/"+data10[1];}
+						else if (data9) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1]+"/"+data9[1];}
+						else if (data8) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1]+"/"+data8[1];}
+						else if (data7) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1]+"/"+data7[1];}
+						else if (data6) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1]+"/"+data6[1];}
+						else if (data5) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1]+"/"+data5[1];}
+						else if (data4) {var label=data1[1]+"/"+data2[1]+"/"+data3[1]+"/"+data4[1];}
+						else if (data3) {var label=data1[1]+"/"+data2[1]+"/"+data3[1];}  
+						else if (data2) {var label=data1[1]+"/"+data2[1];} 
+						else  {var label=data1[1];} 
+						
+						
+						$('#classe_label').html(label);
+						
+							
+						
+							
+						}else {
+						
+						 alert("Nenhuma classe encontrada para sua idade!");
+						 $('#classe').val("");					
+						$('#classe_label').html("<span class='fonte10' style='color:#990000'>Erro ao encontrar classe.</span>");
+					}
+					
+							
+				} 
+				
+			});	
+			
+		  }
+
+		
+		
+	}
+
+
+	 $("#nascimento").live("change", function(){
+		  
+		
+		atualiza_classe("nascimento");
+		
+	 });
+	 
+	 $("#graduacao").live("change", function(){
+		  
+		
+		atualiza_classe("graduacao");
+		
+	 });
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 	  $("#peso").live("change", function(){
+		 
+	 
+		  
+		  
+		  var valor_peso=$("#peso").val();
+		  var valor_sexo=$("#sexo").val();
+		  var valor_classe=$("#classe").val();
+		  var valor_classe2=$("#classe2").val();
+		   var valor_classe3=$("#classe3").val();
+		    var valor_classe4=$("#classe4").val();
+			 var valor_classe5=$("#classe5").val();
+			  var valor_classe6=$("#classe6").val();
+			   var valor_classe7=$("#classe7").val();
+			    var valor_classe8=$("#classe8").val();
+				 var valor_classe9=$("#classe9").val();
+				  var valor_classe10=$("#classe10").val();
+				  var valor_classe11=$("#classe11").val();
+				  var valor_classe12=$("#classe12").val();
+				  var valor_classe13=$("#classe13").val();
+				  var valor_classe14=$("#classe14").val();
+				  var valor_classe15=$("#classe15").val();
+		  var valor_federacao=$("#federacao").val();
+		   var valor_graduacao=$("#graduacao").val();
+		  
+		  
+		  if (valor_sexo=="" || valor_classe=="" || valor_federacao=="" || valor_graduacao=="") {
+			  
+			  
+			  alert('Informe o SEXO, GRADUA��O, FEDERA��O e CLASSE para definir a categoria!');
+		  
+		  
+		  } else {
+		 
+	 
+	 
+	 
+			$.post("retorno_categorias.php", { peso:  valor_peso , sexo:  valor_sexo, classe:  valor_classe, classe2:  valor_classe2, classe3:  valor_classe3, classe4:  valor_classe4,  classe5:  valor_classe5,  classe6:  valor_classe6,   classe7:  valor_classe7,   classe8:  valor_classe8,   classe9:  valor_classe9,   classe10:  valor_classe10,   classe11:  valor_classe11,   classe12:  valor_classe12,   classe13 : valor_classe13,   classe14:  valor_classe14,   classe15:  valor_classe15, federacao:valor_federacao , graduacao:valor_graduacao  },function(data){
+ 
+				
+									
+				if(data!= ''){	
+			
+					 
+					 
+					data=data.split("&");
+					
+					if (data[1]!="") {
+					
+						
+						$('#categoria').val(parseInt(data[0]));					
+						$('#categoria_label').html(data[1]);
+						
+							
+						
+							
+						}else {
+						
+						 alert("Nenhuma categoria encontrada para seu peso!");
+						 $('#categoria').val("");					
+						$('#categoria_label').html("<span class='fonte10' style='color:#990000'>Erro ao encontrar categoria.</span>");
+					}
+					
+							
+				} 
+				
+			});		
+			
+			
+			
+		  }
+
+	 });
+	 
+	 
+	 
+	 
+		 
+	 
+	</script>  
+
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+  <tr height="15"  bgcolor="#D0D5D9">
+		<td width="100%" colspan="4" align="center" bgcolor="#D0D5D9">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="1%" height="27" align="left" valign="top" class="fonte10">
+						<img src="imagens/corner1.gif" width="11" height="27" />
+					</td>
+					<td width="45%" align="left">
+						<div id="submenu">
+							<a href='?secao=pessoas'><h1>JUDOCAS</h1></a>							<h2>detalhes</h2><strong><a href='javascript:history.go(-1)'  ><img src='imagens/anterior2.png' style='vertical-align:middle;margin-right:5px;'><span style='color:#666837;'>VOLTAR</span></a></strong>&nbsp;&nbsp;&nbsp;</h2>
+							
+<a href="?secao=atletas">
+	<img src="imagens/submenu_list.gif" width="10" height="10" alt="listar" style='margin:0 3px 0 5px;vertical-align:middle;' />listar</a>
+
+
+
+
+ 						</div>
+					</td>
+					<td width="53%" align="right">					 
+                    
+                     
+                      <span class='nivel_pessoas_editar'> <a href="?secao=pessoas_editar&amp;id=79588"   title="Atletas - Editar"> <img src='imagens/edit.gif' alt='editar' border='0'/></a> &nbsp;&nbsp; </span>
+					  
+					                        
+                      
+                      
+                      
+                      <span class='nivel_pessoas_imprimir'> <a href="pessoas_imprimir.php?id=79588&detalhes=1&imprimir=1"   title="Atletas - Editar" target="_blank"> <img src='imagens/printer.png' alt='print' border='0'/></a> &nbsp;&nbsp; </span>
+					                        
+                      
+                      
+                                            
+                                            <span class='nivel_pessoas_editar'> <a href="?secao=pessoas_arquivos&qual=79588&origem=pessoas&pagina=pessoas&pagina_titulo=PESSOAS"  ><img src='imagens/download.gif' alt='arquivos' border='0'/></a> &nbsp;&nbsp; </span>
+                                             
+    
+					                        
+                      
+ 
+                      
+                  </td>
+					<td width="1%" align="right" valign="top">
+						<img src="imagens/corner2.gif" width="11" height="27" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+	<tr >
+		<td  bgcolor="#FFFFFF" >
+        
+        
+        
+        
+
+     
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+                    
+              
+              
+                            
+              
+              <div style="padding:20px 0 20px 0" class="esconde_impressao">
+               <span class='aba aba_selecionada' id="aba_dados_basicos">DADOS B�SICOS</span>
+               <span class='aba  exibe_atleta' id="aba_dados_complementares">DADOS COMPLEMENTARES</span>
+              </div>
+              
+              
+              
+              
+              
+              
+        <table width="100%" border="0" align="center" cellpadding="6" cellspacing="3" bgcolor="#FFFFFF" class='tabela_borda hide' id="dados_basicos">
+         
+            <tr>
+            <td height="10" colspan="4">
+
+
+               
+
+
+
+
+                
+
+
+
+               
+
+
+
+            <!--CARTEIRINHA KODANSHA-->
+             
+
+
+
+
+            </td>
+            </tr>
+
+            
+
+
+             
+      
+
+
+           <tr  >
+            <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte13"   style="background-image: url(imagens/bg_td.jpg);"  >Tipo de Cadastro</td>
+          </tr>
+          <tr>
+
+
+            
+
+           <td bgcolor="#F4F4F4" class="azul"><div align="right"><strong>Tipo de Cadastro</strong></div></td>
+            
+
+          <td  colspan="3" bgcolor="#F4F4F4" align='left' class="fonte16 negrito">
+            
+
+            ATLETA
+
+            
+            
+
+             <a  href='termo.php' class='botao' style='font-size:12px;font-weight: bold;background:#006633;text-shadow: none;margin-right:15px;color:#FFF;float:right'  title="TERMO DE AUTORIZA��O" id="botao_termo"  onclick="return hs.htmlExpand(this, {  objectType: 'iframe', headingText: 'TERMO DE AUTORIZA��O', width:800, height:700,objectLoadTime:'after'} )" />TERMO DE COMPROMISSO E RESPONSABILIDADE DO ATLETA E TERMO DE CONSENTIMENTO - CONCORDOU</a>
+
+
+              
+ 
+
+
+          </td>
+
+
+
+        
+
+      </tr>
+          <tbody class="exibe_atleta exibe_tecnico exibe_arbitro">
+              <tr>
+                <td height="10" colspan="4"></td>
+              </tr>
+
+
+
+            
+                <tr>
+            <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte16"    style="background-image: url(imagens/bg_menu.jpg);"   ><span style="color:#FFFF99">#JU079588</span>&nbsp;&nbsp;Ivan Diniz de Ara�jo J�nior</td>
+
+            </tr>
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr bgcolor="#F4F4F4">
+                  <td height="28" class="azul"><div align="right"> <strong> Primeiro Nome</strong></div></td>
+                  <td colspan="2"><span class='fonte13'><strong>Ivan</strong></span></td>
+                  <td rowspan="3">
+                  
+                                 
+                
+                
+                 
+
+
+
+<div class="box_foto">
+<a href='arquivos/pessoas/114451110225Imagem_do_WhatsApp_de_2024-10-30_A(s)_10.40.03_189f5e66.jpg' id="link_principal" onclick="return hs.expand(this,{objectLoadTime : 'after', captionText: 'Ivan Diniz de Ara�jo J�nior'})" ><img id='foto_principal' width='133' src='arquivos/pessoas/114451110225Imagem_do_WhatsApp_de_2024-10-30_A(s)_10_133_100.jpg' alt='Ivan Diniz de Ara�jo J�nior' title='Ivan Diniz de Ara�jo J�nior' border='0'   class='borda'/></a>
+
+ 
+
+</div>                  
+                 
+                 
+                  <span class='vermelho_normal'><strong>EM AN�LISE</strong></span>&nbsp;&nbsp;             
+                
+                  
+                  </td>
+                </tr>
+                <tr bgcolor="#F4F4F4">
+                  <td height="28" class="azul"><div align="right"> <strong>&Uacute;ltimo Nome</strong></div></td>
+                  <td colspan="2"><span class='fonte13'><strong>J�nior</strong></span></td>
+                </tr>
+                <tr bgcolor="#F4F4F4">
+                  <td class="azul"><div align="right"><strong>Nome Completo</strong></div></td>
+                  <td colspan="2"><span class='fonte13'><strong>Ivan Diniz de Ara�jo J�nior</strong></span></td>
+                </tr>
+                <tr>
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Federa&ccedil;&atilde;o</strong></div></td>
+            
+            <td bgcolor="#F4F4F4"><strong>FPJU</strong> - PE<br /><em>Registro em: <strong>12/01/2015</strong></em><input type='hidden' name='federacao' id='federacao' value='25'> 
+      
+      
+
+              
+            </td>
+            
+            
+            <td bgcolor="#F4F4F4">
+
+              <div  >
+
+                <div align="right" class="azul"><strong>Clube</strong></div>
+
+              </div>
+
+              </td>
+            
+            <td bgcolor="#F4F4F4">
+
+              <div  >
+
+                  INSTITUTO IKIGAI DE JUD�
+
+          </div>
+
+          </td>
+            
+          </tr>
+
+
+
+          <tr>
+                  <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Gradua&ccedil;&atilde;o</strong></div></td>
+                  <td bgcolor="#F4F4F4">
+
+
+
+                     
+
+
+                    
+          
+          <input type='hidden' id='graduacao' name='graduacao' value='12' />
+
+
+
+              
+          
+      
+
+
+
+          
+          <img src='arquivos/graduacoes/104315270712preta.png' alt='Preta 1� DAN' width='20' height='20' style='margin-right:5px;vertical-align:middle;'><span class='fonte13'><strong>Preta 1� DAN</strong></span>
+
+
+
+       <input type='hidden' name='graduacao' id='graduacao' value='12'>                    
+                                  
+                      
+                    </td>
+                  <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong><strong>Data da &Uacute;ltima Gradua&ccedil;&atilde;o</strong></strong></div></td>
+                  <td bgcolor="#F4F4F4">
+
+
+                    
+
+                    13/12/2025<input type='hidden' id='graduacao_data' name='graduacao_data' value='13/12/2025' />                    
+                    
+                     
+
+                                       
+                    </td>
+                    
+                    
+                    
+                </tr>
+
+ 
+
+
+
+           <tr class="exibe_arbitro">
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Categoria (Arbitragem)</strong></div></td>
+            <td bgcolor="#F4F4F4"><strong></strong>              
+              
+              
+              
+              <span class='vermelho_normal'><strong>EM AN�LISE</strong></span>&nbsp;&nbsp;              
+              
+              </td>
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong><strong>Data do Registro</strong></strong></div></td>
+            <td bgcolor="#F4F4F4"></td>
+            </tr>
+          <tr  class="exibe_arbitro">
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>&Aacute;rbitro desde</strong></div></td>
+            <td bgcolor="#F4F4F4"></td>
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong><strong>Data do &Uacute;ltimo Exame</strong></strong></div></td>
+            <td bgcolor="#F4F4F4">              
+              
+              
+              
+                <span class='vermelho_normal'><strong>EM AN�LISE</strong></span>&nbsp;&nbsp;              
+              
+              </td>
+            </tr>
+          <tr  class="exibe_arbitro">
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Ingl&ecirc;s</strong></div></td>
+            <td bgcolor="#F4F4F4"></td>
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Espanhol</strong></div></td>
+            <td bgcolor="#F4F4F4"></td>
+            </tr>
+
+
+
+<!--
+
+             <tr class="exibe_tecnico">
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Categoria (T�cnico)</strong></div></td>
+            <td bgcolor="#F4F4F4">              
+              
+              
+              
+              
+              
+              </td>
+            <td  bgcolor="#F4F4F4"></td>
+            <td  bgcolor="#F4F4F4"></td>
+            </tr>
+           
+
+
+
+-->
+               
+               
+                               
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>G�nero</strong></div></td>
+           
+            <td bgcolor="#F4F4F4">masculino<input type='hidden' name='sexo' id='sexo' value='1'>
+
+
+
+
+         
+
+
+
+
+  </td>
+              
+              
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong><strong>Data de Nascimento</strong></strong></div></td>
+            
+            <td bgcolor="#F4F4F4"><span class='fonte13'><strong>01/12/1993 <em>(32 anos)</em></strong></span>
+
+            <div class="exibe_atleta">
+            
+                      &nbsp;&nbsp;&nbsp;&nbsp;Classe: 
+                                      
+                      <span class="vermelho fonte16" id="classe_label">S�nior/M1/S�nor J1/S�nior J2/S�nior Estreante- PE/Absoluto JUBS</span>
+                      
+                      <input type="hidden" id="classe" name="classe" value="7"   class="validate[required]"/><input type="hidden" id="classe2" name="classe2" value="8"   /><input type="hidden" id="classe3" name="classe3" value="229"    /><input type="hidden" id="classe4" name="classe4" value="230"   /><input type="hidden" id="classe5" name="classe5" value="250"   /><input type="hidden" id="classe6" name="classe6" value="256"   /><input type="hidden" id="classe7" name="classe7" value="0"   /><input type="hidden" id="classe8" name="classe8" value="0"   /><input type="hidden" id="classe9" name="classe9" value="0"   /><input type="hidden" id="classe10" name="classe10" value="0"   />
+<input type="hidden" id="classe11" name="classe11" value="0"   />
+<input type="hidden" id="classe12" name="classe12" value="0"   />
+<input type="hidden" id="classe13" name="classe13" value="0"   />
+<input type="hidden" id="classe14" name="classe14" value="0"   />
+<input type="hidden" id="classe15" name="classe15" value="0"   />
+
+                  </div>
+                
+              </td>
+            
+          </tr>
+          <tr>
+            <td bgcolor="#F4F4F4">
+
+              <div class="exibe_atleta">
+
+                 <div align="right" class="azul"><strong><strong>Peso</strong></strong></div>
+
+
+               </div>
+
+               </td>
+            
+            <td bgcolor="#F4F4F4">
+
+
+              <div class="exibe_atleta">
+
+
+                  80.00 kg
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;Categoria: 
+                 <span class="vermelho fonte16" id="categoria_label">
+                Meio-M�dio</span>
+                
+               <input type="hidden" id="categoria" name="categoria" value="6"  />
+
+
+              </div>
+                
+           </td>
+            
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Situa&ccedil;&atilde;o</strong></div></td>
+            <td bgcolor="#F4F4F4">
+
+            
+
+
+
+                 <div style='float:left;padding-top:3px;'><em>Federa&ccedil;&atilde;o</em></div>
+              <span  style='float:left;padding-top:3px;' class='regular'>&nbsp;&nbsp;regular</span>      
+            <div style='float:left;padding-top:3px;'><em>&nbsp;&nbsp;CBJ</em></div>
+              
+        <span  style='float:left;padding-top:3px;' class='regular'>&nbsp;&nbsp;regular</span>           
+
+
+
+
+            
+
+               
+           
+            </td>
+            
+          </tr>
+          <tr bgcolor="#F4F4F4">
+            <td class="azul"><div align="right"><strong>Nacionalidade</strong></div></td>
+            
+            <td>Brasileira</td>
+            
+            <td class="azul"><div align="right"><strong>Naturalidade</strong></div></td>
+            
+            <td>Pernambuco</td>
+            
+          </tr>
+          
+          
+                 
+          
+          
+          <tr>
+            <td bgcolor="#F4F4F4"  class="azul"><div align="right"><strong>Email<span class="oculta_kodansha"></span></strong></div></td>
+            
+            <td bgcolor="#F4F4F4"  >ivandinizaj@gmail.com</td>
+            <td bgcolor="#F4F4F4"   class="azul"><div align="right"><strong>Celular</strong></div></td>
+            <td bgcolor="#F4F4F4"  >(81)99690-2808</td>
+            
+            </tr>
+          <tr>
+            <td bgcolor="#F4F4F4"   class="azul"><div align="right"><strong>Telefone Residencial</strong></div></td>
+            
+            <td bgcolor="#F4F4F4"  >(81)99690-2808</td>
+            <td bgcolor="#F4F4F4" class="azul"><span class="oculta_kodansha"><div align="right"><strong>Vacina</strong></div></span></td>
+            <td bgcolor="#F4F4F4"><span class="oculta_kodansha"></span></td>
+            
+            </tr>
+          
+
+
+
+          <tr>
+            <td bgcolor="#F4F4F4" class="azul">
+
+                <div class="exibe_atleta">
+
+                    <span class="oculta_kodansha"><div align="right"><strong>Nome do Respons&aacute;vel</strong></div></span>
+
+                </div>
+
+
+              </td>
+            
+            <td bgcolor="#F4F4F4">
+
+              <div class="exibe_atleta">
+
+                    <span class="oculta_kodansha"> 
+                  
+                  </span>
+
+
+          </div>
+
+          </td>
+            
+            <td bgcolor="#F4F4F4" class="azul"><div align="right" class="azul"><strong> Status</strong></div></td>
+            
+            <td bgcolor="#F4F4F4">Ativo
+
+
+
+                &nbsp;&nbsp;&nbsp;
+                                
+
+                &nbsp;&nbsp;&nbsp;
+
+                  
+
+
+
+        </td>
+            
+          </tr>
+          <tr class="oculta_kodansha  exibe_atleta " >
+            <td bgcolor="#F4F4F4" class="azul"><div align="right"><strong>Email do T&eacute;cnico</strong></div></td>
+            <td bgcolor="#F4F4F4">institutoikigaijudo@gmail.com</td>
+            <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Sele&ccedil;&atilde;o Brasileira</strong></div></td>
+            <td bgcolor="#F4F4F4">n&atilde;o</td>
+            </tr>
+
+
+
+
+
+
+
+             <tr  class="exibe_arbitro">
+            <td bgcolor="#F4F4F4" class="azul">
+
+                <div>
+
+                  <div align="right"><strong>Estado Civil</strong></div></span>
+
+                </div>
+
+
+              </td>
+            
+            <td bgcolor="#F4F4F4">
+
+             
+
+              --- 
+
+          </td>
+            
+            <td bgcolor="#F4F4F4" class="azul"><div align="right" class="azul"><strong>Escolaridade</strong></div></td>
+            
+            <td bgcolor="#F4F4F4">
+
+              ---
+
+   
+
+
+        </td>
+            
+          </tr>
+        
+
+
+
+
+
+            
+            
+            
+            
+            
+          
+                    
+            
+            
+            
+            
+            
+            
+          <tr  >
+            <td height="10" colspan="4"></td>
+          </tr>
+          <tr  >
+            <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte13"   style="background-image: url(imagens/bg_td.jpg);"  >Documentos</td>
+          </tr>
+          <tr>
+            <td bgcolor="#F4F4F4" class="azul"><div align="right"><strong>CPF</strong></div></td>
+            
+            <td bgcolor="#F4F4F4">111.844.054-41</td>
+            
+            <td bgcolor="#F4F4F4"   class="azul">&nbsp;</td>
+           
+            <td bgcolor="#F4F4F4"  >&nbsp;</td>
+            
+            
+          </tr>
+          <tr>
+            <td bgcolor="#F4F4F4" class="azul"><div align="right"><strong> RG</strong></div></td>
+            <td colspan="3" bgcolor="#F4F4F4"><em>
+              <span style='float:left;padding-top:3px;'><strong>8778494</strong></span>              <div style='float:left;padding-top:3px;margin:0 5px 0 15px;'>&Oacute;rg&atilde;o Expedidor:</div>
+              <span style='float:left;padding-top:3px;'><strong>SDS</strong></span>              <div style='float:left;padding-top:3px;margin:0 5px 0 15px;'>Estado Emissor</div>
+              <span style='float:left;padding-top:3px;'><strong>PE</strong></span>              <div style='float:left;padding-top:3px;margin:0 5px 0 15px;'>Data de Expedi&ccedil;&atilde;o</div>
+              <span style='float:left;padding-top:3px;'><strong>18/06/2009</strong></span>            </em></td>
+          </tr>
+          <tr>
+            <td bgcolor="#F4F4F4" class="azul"><div align="right"><strong>N &ordm; do Passaporte</strong></div></td>
+            <td colspan="3" bgcolor="#F4F4F4">&nbsp;&nbsp;<em>Validade</em>
+: <strong>00/00/0000</strong>&nbsp;&nbsp;&nbsp;<em>&Oacute;rg&atilde;o Emissor</em>:&nbsp;
+&nbsp;&nbsp;<em>Data de Expedi&ccedil;&atilde;o</em>
+: <strong>00/00/0000</strong></td>
+          </tr>
+
+
+
+
+
+        <tr class="exibe_tecnico">
+            <td bgcolor="#D9F6D9" class="azul"><div align="right"><strong> CREF</strong></div></td>
+            <td colspan="3" bgcolor="#D9F6D9"><em>
+              <span style='float:left;padding-top:3px;'><strong></strong></span>             
+             
+             
+             
+              <div style='float:left;padding-top:3px;macrefin:0 5px 0 15px;'>&nbsp;Estado Emissor</div>
+              <span style='float:left;padding-top:3px;'><strong></strong></span>              <div style='float:left;padding-top:3px;margin:0 5px 0 15px;:0 5px 0 15px;'>Validade</div>
+              <span style='float:left;padding-top:3px;'><strong>00/00/0000</strong></span>              
+              
+              
+              
+              
+            </em>
+            
+                        
+            
+            </td>
+          </tr>
+          
+          <tr  class="exibe_tecnico">
+            <td bgcolor="#D9F6D9" class="azul"></td>
+            <td colspan="3" bgcolor="#D9F6D9"><strong>&nbsp;Frente do CREF Documento (anexar): </strong>
+            
+                                
+                <em>nenhum arquivo anexo</em>                
+                
+                
+                &nbsp;&nbsp;&nbsp;
+                <span class='vermelho_normal'><strong>PENDENTE</strong></span>&nbsp;&nbsp;                
+                
+                
+             
+            </td>
+          </tr>
+          
+          
+          
+            
+            <tr  class="exibe_tecnico">
+            <td bgcolor="#D9F6D9" class="azul"></td>
+            <td colspan="3" bgcolor="#D9F6D9"><strong>&nbsp;Verso do CREF Documento (anexar): </strong>
+            
+                        <em>nenhum arquivo anexo</em>                
+                 &nbsp;&nbsp;&nbsp;
+                 <span class='vermelho_normal'><strong>PENDENTE</strong></span>&nbsp;&nbsp;             
+             </td>
+          </tr>
+
+
+
+
+          
+             <tr  class="exibe_arbitro">
+            <td bgcolor="#F4F4F4" class="azul">
+
+                <div  >
+
+                  <div align="right"><strong>PIS-PASEP</strong></div></span>
+
+                </div>
+
+
+              </td>
+            
+            <td bgcolor="#F4F4F4">
+
+              <div >
+
+              ---
+
+          </div>
+
+          </td>
+            
+            <td bgcolor="#F4F4F4" class="azul"><div align="right" class="azul"><strong>Chave PIX p/ pagamentos</strong></div></td>
+            
+            <td bgcolor="#F4F4F4">
+
+              ---
+ 
+
+
+        </td>
+            
+          </tr>
+        
+
+
+
+
+
+                
+                
+                
+                
+                
+                
+                
+          <tr>
+            <td height="10" colspan="4"></td>
+            </tr>
+          <tr>
+            <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte13"   style="background-image: url(imagens/bg_td.jpg);"  >Endere&ccedil;o</td>
+            </tr>
+
+
+             <tr>
+            
+            <td width="20%" bgcolor="#F4F4F4" class="azul"><div align="right" > <strong>CEP</strong></div></td>
+            <td width="30%" bgcolor="#F4F4F4"><div align="left">
+              50731-420              </div></td>
+
+              <td width="20%" bgcolor="#F4F4F4" class="azul" colspan="2"></td>
+            </tr>
+
+
+
+
+
+          <tr>
+            <td width="20%" height="28" bgcolor="#F4F4F4" class="azul"><div align="right"> <strong> Endere&ccedil;o </strong></div></td>
+            <td width="30%" bgcolor="#F4F4F4"><div align="left">
+              Rua Expedicion�rio Guilherme Brasileiro, 69              </div></td>
+            <td width="20%" bgcolor="#F4F4F4" class="azul"><div align="right"> <strong> Complemento </strong></div></td>
+            <td width="30%" bgcolor="#F4F4F4"><div align="left">
+                            </div></td>
+            </tr>
+          <tr>
+            <td width="20%" bgcolor="#F4F4F4" class="azul"><div align="right"  ><strong>Estado</strong></div></td>
+            <td width="30%" bgcolor="#F4F4F4"><div align="left">
+              PE              </div></td>
+            <td width="20%" bgcolor="#F4F4F4" class="azul"><div align="right"  ><strong>Cidade</strong></div></td>
+            <td width="30%" bgcolor="#F4F4F4"><div class="DivCidades">
+              Recife              </div></td>
+            </tr>
+          <tr>
+            <td width="20%" bgcolor="#F4F4F4" class="azul"><div align="right"  ><strong>Bairro</strong></div></td>
+            <td width="30%" bgcolor="#F4F4F4"><div class="DivBairros">
+              Iputinga              </div></td>
+           <td width="15%" bgcolor="#F4F4F4" class="azul" colspan="2"></td>
+            </tr>
+                    
+          <tr>
+            <td height="10" colspan="4"></td>
+            </tr>
+          <tr>
+            <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte13"  style="background-image: url(imagens/bg_td.jpg);"  >Observa&ccedil;&otilde;es</td>
+            </tr>
+          <tr>
+            <td colspan="4" bgcolor="#F4F4F4">
+                                    </td>
+            </tr>
+                
+                
+                
+                
+                
+                
+             
+                
+          </table>
+              
+      
+              
+              
+              
+                           
+              
+              
+              
+        <table width="100%" border="0" align="center" cellpadding="6" cellspacing="3" bgcolor="#FFFFFF" class='tabela_borda hide  ' id="dados_complementares">
+
+          <tbody class=" exibe_atleta">
+         
+               
+                            
+                <tr>
+            <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte16"    style="background-image: url(imagens/bg_menu.jpg);"   ><span style="color:#FFFF99">#JU079588</span>&nbsp;&nbsp;Ivan Diniz de Ara�jo J�nior</td>
+
+            </tr>
+                
+                  
+                
+                
+                <tr bgcolor="#F4F4F4">
+                  <td width="20%" height="28" class="azul"><div align="right"><strong>Nome pelo qual gostaria de ser conhecido</strong></div></td>
+                  <td width="30%"><span class='fonte13'><strong></strong></span></td>
+                  <td width="17%"   class="azul"><div align="right"><strong>Telefone Complementar 1</strong></div></td>
+                  <td width="33%"  ></td>
+                 
+                  
+                 
+                </tr>
+                <tr bgcolor="#F4F4F4">
+                  
+                  
+                  
+                  <td height="28" class="azul"><div align="right"> <strong>Nome do Pai</strong></div></td>
+                  <td>Ivan Diniz de Ara�jo</td>
+                  <td   class="azul"><div align="right"><strong>Telefone Complementar 2</strong></div></td>
+                  <td  ></td>
+                </tr>
+                
+                
+                
+                <tr bgcolor="#F4F4F4">
+                  <td class="azul"><div align="right"><strong>Nome da M&atilde;e</strong></div></td>
+                  <td>Magaly Maria Ferreira de Sales</td>
+                  <td   class="azul"><div align="right"><strong>Email Secund&aacute;rio</strong></div></td>
+                  <td  ></td>
+                </tr>
+                <tr>
+                  <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>T&eacute;cnico</strong></div></td>
+                  <td colspan="3" bgcolor="#F4F4F4"></td>
+                </tr>
+                <tr>
+                  <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Universit&aacute;rio</strong></div></td>
+                  <td colspan="3" bgcolor="#F4F4F4"><span class="tabela_borda">
+                    n&atilde;o                  </span> 
+                  
+                  
+                  <span id="exibe_universitario"  class="hide"  >
+                  
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="azul"><strong>Institui&ccedil;&atilde;o</strong>:
+                  <span class='fonte13'><strong></strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Curso</strong>:
+                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Per&iacute;odo/Semestre</strong>:
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>Previs&atilde;o de Gradua&ccedil;&atilde;o</strong>:
+                  </span>
+                  
+                  
+                  </span>
+                  
+                  </tr>
+                <tr>
+                  <td height="28" colspan="4" bgcolor="#FFFFFF" class="azul">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td height="28" colspan="4" bgcolor="#F4F4F4" class="tabela_borda"><table width="100%" border="0" cellspacing="3" cellpadding="6">
+                    <tr class="branco fonte12">
+                      <td align="center" bgcolor="#006699">Altura (cm)</td>
+                      <td align="center" bgcolor="#006699">Tamanho Wagui Branco</td>
+                      <td align="center" bgcolor="#006699">Tamanho Cal&ccedil;a Judogui Branco</td>
+                      <td align="center" bgcolor="#006699">Tamanho Wagui Azul</td>
+                      <td align="center" bgcolor="#006699">Tamanho Cal&ccedil;a Judogui Azul</td>
+                      <td align="center" bgcolor="#006699">Tamanho Faixa</td>
+                      <td align="center" bgcolor="#006699">Tamanho Camisa</td>
+                      <td align="center" bgcolor="#006699">Tamanho Bermuda</td>
+                      <td align="center" bgcolor="#006699">Tamanho Agasalho</td>
+                      <td align="center" bgcolor="#006699">Tamanho Cal&ccedil;ado</td>
+                      <td align="center" bgcolor="#006699">Tamanho Chinelo</td>
+                    </tr>
+                    <tr class="fonte13">
+                      <td align="center" >0</td>
+                      
+                      
+                      
+                      
+                      <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                      
+                      
+                           <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                      
+                     
+                           <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                      
+                      
+                            <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                            <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                      
+                      <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                       
+                           <td align="center" >
+                                            
+                      </td>
+                      
+                      
+                      
+                      
+                      
+                    </tr>
+                 
+                     </tbody> 
+
+                  </table>
+
+
+
+
+                </td>
+                </tr>
+                <tr>
+                  <td colspan="4" bgcolor="#FFFFFF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Kumi-Kata</strong></div></td>
+                  <td bgcolor="#F4F4F4"></td>
+                  <td bgcolor="#F4F4F4"><div align="right" class="azul"><strong>Tokui-Waza</strong></div></td>
+                  <td bgcolor="#F4F4F4">                     
+                    
+                                        
+                    
+                    
+                    
+                    
+                    </td>
+                </tr>
+                <tr class="tabela_borda">
+                  <td height="10" colspan="4"></td>
+                </tr>
+                <tr class="tabela_borda">
+                  <td height="20" colspan="4" bgcolor="#B6B589" class="branco centraliza fonte13"   style="background-image: url(imagens/bg_td.jpg);"  >Dados Banc&aacute;rios</td>
+                </tr>
+                <tr>
+                   <td colspan="4" bgcolor="#F4F4F4" align="center">
+                    <strong>Banco</strong>:
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Ag&ecirc;ncia</strong>:
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<strong>Conta</strong>:
+                                        </td>
+                </tr>
+                
+                
+                
+                                
+
+                </td>
+
+
+               </tbody> 
+                
+                
+          </table>
+              
+              
+              
+              
+                             
+              
+                      
+           
+            
+            
+                 
+                
+            
+
+
+
+          <br /><br />
+
+
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tabela_borda">
+                    <tr>
+					  <td height="30" colspan="4" bgcolor="#006633" class="branco centraliza fonte13"  style="background-image: url(imagens/bg_menu.jpg);"  >PARTICIPA��ES EM COMPETI��ES - ATLETA</td>
+
+				  </tr>
+				 <tr> <td height="10"></td></tr>
+
+					<tr>
+						<td colspan="4">
+
+							  <table width="100%" border="0" align="center" cellpadding="6" cellspacing="3" class="fonte11 tabela_borda">
+
+                               
+
+							    <tr bgcolor="#FFFFFF"><td align="center" ><em>Este atleta ainda n�o participou de nenhuma competi��o</em></td></tr>
+						      </table>
+
+						</td>
+					</tr>
+
+
+                    <tr>
+					  <td height="40" colspan="4"></td>
+				  </tr>
+
+
+                   </table>
+
+
+	 
+                        
+                        
+              
+
+
+
+          <br /><br />
+
+
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tabela_borda">
+                    <tr>
+					  <td height="30" colspan="4" bgcolor="#006633" class="branco centraliza fonte13"  style="background-image: url(imagens/bg_menu.jpg);"  >STAFF - PARTICIPA��ES EM COMPETI��ES COMO INTEGRANTE DO STAFF</td>
+
+				  </tr>
+				 <tr> <td height="10"></td></tr>
+
+					<tr>
+						<td colspan="4">
+
+							  <table width="100%" border="0" align="center" cellpadding="6" cellspacing="3" class="fonte11 tabela_borda">
+
+                               
+
+							    <tr bgcolor="#FFFFFF"><td align="center" ><em>N�o participou de nenhuma competi��o como STAFF</em></td></tr>
+						      </table>
+
+						</td>
+					</tr>
+
+
+                    <tr>
+					  <td height="40" colspan="4"></td>
+				  </tr>
+
+
+                   </table>
+
+
+	
+                    
+
+
+
+     
+                
+            
+
+
+
+          <br /><br />
+
+
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tabela_borda">
+                    <tr>
+					  <td height="30" colspan="4" bgcolor="#006633" class="branco centraliza fonte13"  style="background-image: url(imagens/bg_menu.jpg);"  >PARTICIPA��ES EM EVENTOS</td>
+
+				  </tr>
+				 <tr> <td height="10"></td></tr>
+
+					<tr>
+						<td colspan="4">
+
+							  <table width="100%" border="0" align="center" cellpadding="6" cellspacing="3" class="fonte11 tabela_borda">
+
+                               
+
+							    <tr height="15" >
+
+          <td width="56%" align="center" bgcolor="#006633" class="branco">evento</td>
+                    <td width="56%" align="center" bgcolor="#006633" class="branco">atividade</td>
+
+          <td width="17%" align="center" bgcolor="#006633" class="branco">�mbito</td>
+          <td width="7%" align="center" bgcolor="#006633" class="branco">local</td>
+          <td width="20%" align="center" bgcolor="#006633" class="branco">data</td>
+
+
+           
+          <td width="1%" align="center" bgcolor="#006633" class="branco">certificado</td>
+			
+
+						        </tr>
+
+                                  
+
+							    <tr><td style='background: url(imagens/bg_peso.jpg) bottom repeat-x #FDFCD6;' colspan='7' class='verde  fonte16'>2025</td></tr>
+
+					 <tr   onmouseover="setPointer(this,'#FFFFCC');" onmouseout="setPointer(this,'#FFFFFF');" bgcolor="#FFFFFF">
+
+ 
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2543' target='_blank'><strong class='verde'>PROMO��O DE GRAU - YUDANSHA - 2025</strong></a></td>
+
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2543' target='_blank'><strong class='verde'>PROMO��O DE GRAU - YUDANSHA - 2025</strong></a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2543' target='_blank'>Nacional</a></td>
+					  <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2543' target='_blank'>RJ</a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2543' target='_blank'>01/07/2025<strong>&nbsp;a&nbsp;</strong>30/04/2026</a></td>
+
+
+					  
+
+						<td align="center">
+
+
+						
+
+
+						<a href='certificado/index.php?qual=2543&tipo=eventos_inscricoes&inscritos=200535' target='_blank'><img src='imagens/download.gif' alt='visualizar certificado'></a>
+
+						
+
+
+
+
+							
+
+
+
+								
+  
+						</td>
+						
+
+
+
+
+					</tr>
+					
+
+					 <tr   onmouseover="setPointer(this,'#FFFFCC');" onmouseout="setPointer(this,'#FFFFFF');" bgcolor="#FFFFFF">
+
+ 
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2390' target='_blank'><strong class='verde'>REGRAS DE ARBITRAGEM/REGULAMENTO NACIONAL DE COMPETI��ES DE 2025 - ARBITRAGEM.</strong></a></td>
+
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2390' target='_blank'><strong class='verde'>AVALIA��O</strong></a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2390' target='_blank'>Nacional</a></td>
+					  <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2390' target='_blank'>RJ</a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2390' target='_blank'>10/02/2025<strong>&nbsp;a&nbsp;</strong>13/02/2025</a></td>
+
+
+					  
+
+						<td align="center">
+
+
+						
+
+
+
+
+							
+
+
+
+								
+  
+						</td>
+						
+
+
+
+
+					</tr>
+					
+
+					 <tr   onmouseover="setPointer(this,'#FFFFCC');" onmouseout="setPointer(this,'#FFFFFF');" bgcolor="#FFFFFF">
+
+ 
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2368' target='_blank'><strong class='verde'>ALTERA��O DE REGRAS 2025</strong></a></td>
+
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2368' target='_blank'><strong class='verde'>AVALIA��O </strong></a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2368' target='_blank'>Nacional</a></td>
+					  <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2368' target='_blank'>RJ</a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2368' target='_blank'>01/01/2025<strong>&nbsp;a&nbsp;</strong>12/12/2025</a></td>
+
+
+					  
+
+						<td align="center">
+
+
+						
+
+
+
+
+							
+
+
+
+								
+  
+						</td>
+						
+
+
+
+
+					</tr>
+					<tr><td style='background: url(imagens/bg_peso.jpg) bottom repeat-x #FDFCD6;' colspan='7' class='verde  fonte16'>2024</td></tr>
+
+					 <tr   onmouseover="setPointer(this,'#FFFFCC');" onmouseout="setPointer(this,'#FFFFFF');" bgcolor="#FFFFFF">
+
+ 
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2143' target='_blank'><strong class='verde'>JUD� GOI�S ENTREVISTAS N�007 - SENSEI EDISON MINAKAWA</strong></a></td>
+
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2143' target='_blank'><strong class='verde'>JUD� GOI�S ENTREVISTAS N�7 - SENSEI EDISON MINAKAWA</strong></a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2143' target='_blank'>Interestadual � Interclubes</a></td>
+					  <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2143' target='_blank'>GO</a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=2143' target='_blank'>03/07/2024<strong>&nbsp;a&nbsp;</strong>03/07/2024</a></td>
+
+
+					  
+
+						<td align="center">
+
+
+						
+
+
+						<a href='certificado/index.php?qual=2143&tipo=eventos_inscricoes&inscritos=155121' target='_blank'><img src='imagens/download.gif' alt='visualizar certificado'></a>
+
+						
+
+
+
+
+							
+
+
+
+								
+  
+						</td>
+						
+
+
+
+
+					</tr>
+					
+
+					 <tr   onmouseover="setPointer(this,'#FFFFCC');" onmouseout="setPointer(this,'#FFFFFF');" bgcolor="#FFFFFF">
+
+ 
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=1990' target='_blank'><strong class='verde'>AVALIA��O DE ARBITRAGEM / REGULAMENTO NACIONAL DE COMPETI��ES 2024</strong></a></td>
+
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=1990' target='_blank'><strong class='verde'>AVALIA��O</strong></a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=1990' target='_blank'>Nacional</a></td>
+					  <td align="center"><a href='index.php?secao=eventos_relatorios&qual=1990' target='_blank'>RJ</a></td>
+					 <td align="center"><a href='index.php?secao=eventos_relatorios&qual=1990' target='_blank'>03/01/2024<strong>&nbsp;a&nbsp;</strong>31/12/2024</a></td>
+
+
+					  
+
+						<td align="center">
+
+
+						
+
+
+
+
+							
+
+
+
+								
+  
+						</td>
+						
+
+
+
+
+					</tr>
+					
+						      </table>
+
+						</td>
+					</tr>
+
+
+                    <tr>
+					  <td height="40" colspan="4"></td>
+				  </tr>
+
+
+                   </table>
+
+
+	 
+                        
+
+
+             
+            
+            
+
+
+          <br /><br />
+
+
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tabela_borda">
+                    <tr>
+					  <td height="30" colspan="4" bgcolor="#006633" class="branco centraliza fonte13"  style="background-image: url(imagens/bg_menu.jpg);"  >ARQUIVOS</td>
+
+				  </tr>
+				 <tr> <td height="10"></td></tr>
+
+					<tr>
+						<td colspan="4">
+
+							  <table width="100%" border="0" align="center" cellpadding="6" cellspacing="3" class="fonte11 tabela_borda">
+
+                               
+
+							    <tr height="15" >
+
+								  <td width="20%" align="center" bgcolor="#006633" class="branco">data</td>
+								  <td width="30%" align="center" bgcolor="#006633" class="branco">t�tulo</td>
+								  <td width="40%" align="center" bgcolor="#006633" class="branco">obs</td>
+								  <td width="10%" align="center" bgcolor="#006633" class="branco"></td>
+
+						        </tr>
+
+                                  
+
+							    <tr><td style='background: url(imagens/bg_peso.jpg) bottom repeat-x #FDFCD6;' colspan='6' class='verde  fonte16'>Documentos Pessoais</td></tr>
+
+					 <tr   onmouseover="setPointer(this,'#FFFFCC');" onmouseout="setPointer(this,'#FFFFFF');" bgcolor="#FFFFFF">
+
+						<td align="center">13/12/2025</td>
+						<td align="center"><strong>Certificado 1� DAN</strong></td>
+						<td align="center"></td>
+						<td align="center"><a href='arquivos/pessoas_arquivos/200235190426Ivan_Diniz_de_AraUjo_JUnior_-_1_DAN.pdf' target='_blank'><img src='imagens/download.gif' border='0' title='download'></a></td>
+
+					</tr>
+					
+						      </table>
+
+						</td>
+					</tr>
+
+
+                    <tr>
+					  <td height="40" colspan="4"></td>
+				  </tr>
+
+
+                   </table>
+
+
+	            
+            
+            
+            
+              
+   
+        
+                      
+        <script>
+    
+  
+  
+ $("#sexo").live("change",function() {
+
+
+    $('#sexo option:selected').each(function() {
+        sexo = $(this).val();
+     });
+
+      $('#sexo_nascimento').val(sexo).change();
+
+});   
+ 
+    
+   
+ $("#graduacao").live("change",function() {
+  
+  $('#graduacao option:selected').each(function() {
+    graduacao = $(this).val();
+   });
+   
+   
+   var graduacao_antes=$("#graduacao_antes").val();
+  
+   
+   if (graduacao_antes<17 && (graduacao==17 || graduacao==18 || graduacao==19 || graduacao==20 || graduacao==21)){
+     
+
+
+   
+    $(".oculta_kodansha").hide();
+    $(".valida_kodansha").removeClass("validate[required]");
+    $("#kodansha").val("1");
+   } else {
+     
+     $(".oculta_kodansha").show();
+     $(".valida_kodansha").removeClass("validate[required]").addClass("validate[required]");
+     $("#kodansha").val("0");
+   }
+  
+});     
+    
+    
+  
+  
+function carrega_basicos(){
+
+    $('#dados_basicos').show();
+  
+    $( "#dados_complementares" ).hide();
+      
+        $("#aba_dados_basicos").attr('class','aba aba_selecionada');
+      $('#aba_dados_complementares').attr('class','aba');
+       window.location.href = "#basicos";
+       $('#formulario').attr('action','?secao=pessoas_editar&acao=atualizar&id=79588#basicos');
+       
+   
+  
+  
+  
+  
+  
+}
+
+
+
+function carrega_complementares(){
+  
+  
+  $( "#dados_basicos" ).hide( "fast", function() {
+     $('#dados_complementares').show();
+    $("#aba_dados_complementares").attr('class','aba aba_selecionada');
+    $('#aba_dados_basicos').attr('class','aba');
+     window.location.href = "#complementares";
+      $('#formulario').attr('action','?secao=pessoas_editar&acao=atualizar&id=79588#complementares');
+   });  
+  
+  
+  
+  
+}
+
+
+
+    
+ 
+$('#aba_dados_basicos').live("click",function(){
+  
+  carrega_basicos(); 
+
+
+});
+  
+  
+  
+ 
+$('#aba_dados_complementares').live("click",function(){
+  
+  carrega_complementares(); 
+   
+ });
+  
+ 
+ 
+ 
+ 
+ 
+
+function carrega_todos(){
+  
+  
+  $( "#dados_basicos" ).show();
+  $( "#dados_complementares" ).show();
+  $(".aba").hide(); 
+  
+  
+}   
+      
+  
+  
+$("#universitario").live("change", function(){
+  
+     var universitario;
+      
+     $('#universitario option:selected').each(function() {
+       universitario = $(this).val();
+     });
+     
+      
+    if (universitario=="0") {$('#exibe_universitario').hide();}
+    else if (universitario=="1") {$('#exibe_universitario').show();}
+   
+   
+});
+ 
+ 
+ 
+    
+    
+    
+    
+    
+            
+   $(document).ready(function(){
+     
+     
+          
+     
+     
+         
+    if ( window.location.hash!="") {
+      
+      var aba=window.location.hash.replace("#","");
+      
+      if (aba=="complementares"){carrega_complementares();}
+      else if (aba=="basicos"){carrega_basicos();}
+
+
+   
+    } else {
+      
+    carrega_basicos();  
+      
+    }
+    
+    
+        
+      
+       
+     
+    $("#federacao").live("change",function() {
+      $("#registro_data").attr("value","")
+    });    
+     
+     
+     
+     
+       
+    $("#formulario").validationEngine({
+     
+     
+      
+       'customFunctions': {
+          'data_maxima': function (field, rules, i, options){
+            
+              var myDate=field.val();
+              myDate=myDate.split("/");
+              var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2];
+              var data_campo=new Date(newDate).getTime();
+              var data_atual=new Date("05/01/2026").getTime();
+           
+                if (data_atual< data_campo || field.val()=="00/00/0000") {
+                 // this allows the use of i18 for the error msgs
+                 return options.allrules.data_maxima.alertText;
+                }
+             
+          }
+        }
+      
+      
+      });
+   
+             
+             
+             
+       
+      
+       
+                $(".formulario").click(function() {
+                    $("#formulario").validationEngine('hide')
+                });
+                
+                
+             
+ 
+ 
+  });
+ 
+ 
+
+    
+    
+$( "#unificar").autocomplete(
+  
+  {
+     source:'pessoas_retorno.php?tipo=unificar' ,
+     minLength: 3,
+     
+     select: function (event, ui) {
+         
+      var label = ui.item.label;
+      var value = ui.item.value;
+     
+      alert("MUITA ATEN��O! O USU�RIO "+label+" SER� ELIMINADO AP�S VOC� CLICAR EM ATUALIZAR!");
+         
+      $("#unificar").attr('value',label).attr('readonly', true).addClass('desabilita');
+      $("#unificar_id").attr('value',value);
+      $("#unificar").after("<img src='imagens/cancel.gif' id='excluir_unificar' style='cursor:pointer;vertical-align:middle;margin-left:5px;'  >");
+   
+      
+       return false;
+     
+    }
+     
+  });
+  
+
+
+
+
+
+
+
+ $("#excluir_unificar").live("click",function() {
+           
+      $("#unificar").attr('value',"").attr('readonly', false).removeClass('desabilita');
+      $("#unificar_id").attr('value',"");
+      $("#excluir_unificar").remove();
+      
+   
+     
+});
+
+
+
+
+
+
+oculta_exibe_tipo_cadastro();
+
+function oculta_exibe_tipo_cadastro(){
+
+
+
+  $(".exibe_atleta").hide();
+  $(".exibe_tecnico").hide();
+  $(".exibe_arbitro").hide();
+
+
+  var atleta='1';var tecnico='0';var arbitro='0';
+
+
+
+
+  if (atleta=="1"){$('.exibe_atleta').show();}
+  if (tecnico=="1"){ $('.exibe_tecnico').show();}
+  if (arbitro=="1"){ $('.exibe_arbitro').show();}
+
+}
+
+       
+$(".tipo_cadastro").live("click",function() {
+
+
+    oculta_exibe_tipo_cadastro();
+     
+  
+});    
+
+
+       
+$("#falecido").live("click",function() {
+
+
+     if($('#falecido').attr('checked')) {$('.exibe_falecido').show();} else {$('.exibe_falecido').hide();}
+  
+  
+});    
+
+
+
+
+
+
+setTimeout(function(){ 
+
+  $("#complemento").val("");
+ 
+   }, 1000);
+ 
+                
+                
+</script>         
+        
+        
+		</td>
+	</tr>
+</table>
+<table width="98%" border="0"  cellpadding="0" cellspacing="0">
+  <tr height="15"  bgcolor="#D0D5D9">
+		<td width="100%" colspan="4" align="center" bgcolor="#D0D5D9">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="1%" height="31" align="left" valign="bottom" class="fonte10">
+						<img src="imagens/corner3.gif" width="11" height="27" />
+					</td>
+					<td width="18%" height="31" align="left">&nbsp;</td>
+				  <td width="57%" align="center"class="centraliza fonte9"><em>Atualizado em 18/04/2026 04:08:10 por Ivan Diniz de Ara�jo J�nior (Judoca)</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />				    <em>Cadastrado em 11/12/2018 13:30:42 por Associa��o Marcilio Moraes (Clube)</em></td>
+					<td width="22%" align="right">&nbsp;</td>
+					<td width="2%" align="right" valign="bottom">
+						<img src="imagens/corner4.gif" width="11" height="27" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+          </div>
+  </div>
+</div>
+
+
+ 
+
+
+
+
+
+
+
+
+
+<span class="calendario_show">
+
+<div id="box1">
+    <a href="javascript:;"  onclick="box2('box1','box1a');">
+        <img src="imagens/box_agenda.png" alt="agenda" width="30" height="350" border="0" align="left"/>
+    </a>
+  <div style='margin:15px 15px 15px 40px;font-size:10px;line-height:10px;'>
+    <table width="100%" border="0" align="center"  cellpadding="1" cellspacing="3" class="tabela_borda" >
+      <tr>
+        <td colspan="7" align="center" class="preto" height="20" style="border:none!important"><a class='preto mes_voltar' href="?mes=04&amp;ano=2026"><img src="imagens/anterior2.png" alt="anterior" width="16" height="16" border="0"  style="vertical-align:middle;"/></a>&nbsp; <a href='?secao=agenda&mes=05&ano=2026'>
+          <span class='vermelho'>
+          Maio 2026          </span>
+          </a>&nbsp; <a class='preto mes_avancar' href="?mes=06&amp;ano=2026"><img src="imagens/proxima2.png" alt="proxima" width="16" height="16" border="0" style="vertical-align:middle;"/></a></td>
+      </tr>
+            <tr align="center">
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>Dom</b></td>
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>Seg</b></td>
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>Ter</b></td>
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>Qua</b></td>
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>Qui</b></td>
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>Sex</b></td>
+                <td align="center" bgcolor="#3D5A86" class="branco" height="15"><b>S�b</b></td>
+              </tr>
+      <tr align="center">
+                <td bgcolor="#EEEEEE" align="center">26</td>
+                <td bgcolor="#EEEEEE" align="center">27</td>
+                <td bgcolor="#EEEEEE" align="center">28</td>
+                <td bgcolor="#EEEEEE" align="center">29</td>
+                <td bgcolor="#EEEEEE" align="center">30</td>
+        <td   class='fonte18 verde'  align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=1'><strong>1</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=2'><strong>2</strong></a></td>      </tr>
+      <tr align="center">
+        <td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=3'><strong>3</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=4'><strong>4</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=5'><strong>5</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=6'><strong>6</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=7'><strong>7</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=8'><strong>8</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=9'><strong>9</strong></a></td>      </tr>
+      <tr align="center">
+        <td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=10'><strong>10</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=11'><strong>11</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=12'><strong>12</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=13'><strong>13</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=14'><strong>14</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=15'><strong>15</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=16'><strong>16</strong></a></td>      </tr>
+      <tr align="center">
+        <td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=17'><strong>17</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=18'><strong>18</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=19'><strong>19</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=20'><strong>20</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=21'><strong>21</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=22'><strong>22</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=23'><strong>23</strong></a></td>      </tr>
+      <tr align="center">
+        <td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=24'><strong>24</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=25'><strong>25</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=26'><strong>26</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=27'><strong>27</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=28'><strong>28</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=29'><strong>29</strong></a></td><td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=30'><strong>30</strong></a></td>      </tr>
+      <tr align="center">
+        <td    align='center' height='20'  ><a href='?secao=agenda&mes=05&ano=2026&dia=31'><strong>31</strong></a></td>        <td bgcolor="#EEEEEE" align="center">1</td>
+                <td bgcolor="#EEEEEE" align="center">2</td>
+                <td bgcolor="#EEEEEE" align="center">3</td>
+                <td bgcolor="#EEEEEE" align="center">4</td>
+                <td bgcolor="#EEEEEE" align="center">5</td>
+                <td bgcolor="#EEEEEE" align="center">6</td>
+              </tr>
+    </table>
+    <div style='margin-top:15px;height:95px;overflow-y:auto;'><u><strong>Compromissos pendentes para hoje</strong></u> 
+      <br /><em>Voc� n�o possui nenhum compromisso pendente para hoje!</em>    </div>
+  </div>
+</div>
+</span>
+<script type="text/javascript">
+    $(function(){
+        $('.mes_voltar, .mes_avancar').live('click',function(){
+            var url = $(this).attr('href')+'&calend_ajax=1';
+            $.post(
+                "agenda_show.php"+url,
+                function(d){
+                    $('.calendario_show').html(d);
+                    $('#box1').show();
+                }
+            );
+            
+            return false;
+        });
+    });
+</script>
+
+<div id="box1a">
+    <a href="javascript:void(0)"  onclick="box('box1','box1a');">
+        <img src="imagens/box_agenda.png" alt="agenda" width="30" height="350" border="0"/>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="rodape">
+  <div id="rodape_esquerda"></div>
+  <div id="rodape_meio"> <span style='color:#FFFFCC'>CBJ&nbsp;-&nbsp;Confedera&ccedil;&atilde;o&nbsp;Brasileira&nbsp;de&nbsp;Jud&ocirc;.&nbsp;Tel:&nbsp;55&nbsp;21&nbsp;2463-2692&nbsp;/&nbsp;Fax:&nbsp;55&nbsp;21&nbsp;2462-3274</span>&nbsp;&nbsp;<a href="mailto:suporte@zempo.com.br"><span class='fonte12'><strong>suporte@zempo.com.br</strong></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>desenvolvido por <strong><a href="https://www.rdweb.com.br" target="_blank">rdweb.com.br</a></strong></em> </div>
+  <div id="rodape_direita"> </div>
+</div>
+<script type="text/javascript">
+	 
+		
+		
+		$(document).ready(function () {
+		
+			$(document).keydown(function (e) {
+		
+				if (e.keyCode == '27') {
+					document.getElementById('ibox_w').style.visibility = "hidden";
+					document.getElementById('ibox_content').style.visibility = "hidden";
+					document.getElementById('ibox_wrapper').style.visibility = "hidden";
+				}
+			});
+		
+		});
+       </script> 
+<div id="loader" style="position:fixed;left:0; bottom:0; z-index:1000;"></div>
+<a id="detalhado" style="display:none" href="?secao=projetos" target="_blank"> </a>
+
+
+
+
+<script>
+
+
+/*MENU PERSISTENTE*/
+$(window).scroll(function () {
+	if ($(this).scrollTop() > 200) {
+		$('#menu').addClass("menu_persistente");
+	} else {
+		$('#menu').removeClass("menu_persistente");
+	}
+});
+
+
+
+
+
+
+
+ 
+   
+
+
+
+
+
+
+ 
+$(document).ready(function() { 
+
+
+
+$(".tipTip").tipTip({defaultPosition: 'top'});	
+
+
+remember( '.ui-autocomplete-options input' );
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+	 
+  		var tamanho_bg;
+ 
+		tamanho_bg=$(window).height()-285;
+		
+		
+	 
+		
+		$("#bg").css("height",tamanho_bg);
+		$("#bg").css("min-height",tamanho_bg);
+		
+		
+		$(window).resize(function(e) {
+			
+			tamanho_bg=$(window).height()-285;
+			
+				$("#bg").css("height",tamanho_bg);
+				$("#bg").css("min-height",tamanho_bg);
+			
+			  });
+				createCookie('dojochatId','',-1);
+		createCookie('dojochatNome','',-1);
+		createCookie('dojochatUser','',-1);
+		createCookie('dojochatTipo','',-1);
+		  });
+
+
+
+
+  
+          
+      $(".fade").live('mouseover', function() {
+		  
+		   if (!$.browser.msie) {
+		  clss = $(this).hasClass('fade');
+		  if(clss){	
+ 			$(this).fadeTo(10, 0.85);
+		  }
+		  
+		  
+		   }
+		});
+							
+								
+								
+								
+		$(".fade").live('mouseout', function() {	
+		
+		 if (!$.browser.msie) {
+		
+			clss = $(this).hasClass('fade');
+		  	if(clss){
+				$(this).fadeTo(10, 1);
+			}
+			}
+			
+		});
+		
+		
+///FIX TO PLACEHOLDER		
+if ($.browser.msie) {
+			
+	$('[placeholder]').focus(function() {
+	  var input = $(this);
+	  if (input.val() == input.attr('placeholder')) {
+		input.val('');
+		input.removeClass('placeholder');
+	  }
+	}).blur(function() {
+	  var input = $(this);
+	  if (input.val() == '' || input.val() == input.attr('placeholder')) {
+		input.addClass('placeholder');
+		input.val(input.attr('placeholder'));
+	  }
+	}).blur();
+	
+	
+	
+	$('[placeholder]').parents('form').submit(function() {
+	  $(this).find('[placeholder]').each(function() {
+		var input = $(this);
+		if (input.val() == input.attr('placeholder')) {
+		  input.val('');
+		}
+	  })
+	});	
+
+}
+
+
+
+
+
+
+
+
+
+
+ </script>
+</body>
+</html>

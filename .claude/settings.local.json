@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test *)",
+      "Bash(grep -E \"\\\\.\\(js|json|ts\\)$\")",
+      "Bash(npm install *)",
+      "Bash(npx jest *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
