@@ -45,6 +45,9 @@ USER_DATA_CACHE_TTL=3600
 # Tempo de vida do cache de clubes em segundos (padrão: 172800 = 48 horas)
 CLUBES_CACHE_TTL=172800
 
+# Tempo de vida do cache de detalhes de clube em segundos (padrão: 86400 = 24 horas)
+CLUB_DETAILS_CACHE_TTL=86400
+
 # URL base do ZEMPO
 ZEMPO_BASE_URL=https://zempo.com.br
 ```
@@ -215,6 +218,65 @@ curl "http://localhost:3000/api/clubes?ordem=DESC" \
 
 ---
 
+### `GET /api/clubes/:id`
+Retorna os **detalhes completos de um clube** pelo ID numérico ou código público.
+
+**Formatos aceitos para `:id`:**
+
+| Formato | Exemplo |
+|---------|---------|
+| ID numérico | `2294` |
+| Código do clube | `CL002294` |
+
+```bash
+# Por ID numérico
+curl http://localhost:3000/api/clubes/2294 \
+  -H "X-API-Key: minha_chave"
+
+# Por código público
+curl http://localhost:3000/api/clubes/CL002294 \
+  -H "X-API-Key: minha_chave"
+
+# Forçar atualização ignorando cache
+curl "http://localhost:3000/api/clubes/2294?refresh=true" \
+  -H "X-API-Key: minha_chave"
+```
+
+**Resposta:**
+```json
+{
+  "success": true,
+  "_cached": false,
+  "_parsedAt": "2026-05-04T12:00:00.000Z",
+  "data": {
+    "codigo": "CL002294",
+    "nome": "4º Bravo Lutas - Probatório",
+    "sigla": "4BL",
+    "federacao": "FMTJ - MT",
+    "cnpj": null,
+    "email": "4bpm@pm.mt.gov.br",
+    "website": null,
+    "federado": true,
+    "telefone": "(65)99903-0499",
+    "status": "Ativo",
+    "cep": "78110-302",
+    "endereco": "Avenida Filinto Muller 538",
+    "estado": "Mato Grosso",
+    "bairro": "Centro",
+    "complemento": "bairro centro",
+    "cidade": "Várzea Grande",
+    "facebook": null,
+    "instagram": "4bravopmmt",
+    "whatsapp": null,
+    "twitter": null,
+    "youtube": null,
+    "_parsedAt": "2026-05-04T12:00:00.000Z"
+  }
+}
+```
+
+---
+
 ### `GET /api/status`
 Status da API, sessão e caches.
 
@@ -349,10 +411,11 @@ zempo-api/
 ├── src/
 │   ├── server.ts              # Entry point Express
 │   ├── cache/
-│   │   ├── SessionCache.ts    # Gerencia sessão ZEMPO (singleton)
-│   │   ├── DataCache.ts       # Classe base de cache genérico
-│   │   ├── atletasCache.ts    # Cache de dados de atletas
-│   │   └── clubesCache.ts     # Cache de consultas de clubes
+│   │   ├── SessionCache.ts       # Gerencia sessão ZEMPO (singleton)
+│   │   ├── DataCache.ts          # Classe base de cache genérico
+│   │   ├── atletasCache.ts       # Cache de dados de atletas
+│   │   ├── clubesCache.ts        # Cache de consultas de clubes
+│   │   └── clubDetailsCache.ts   # Cache de detalhes de clube
 │   ├── errors/
 │   │   └── AppError.ts        # Erros tipados (ValidationError, GatewayError...)
 │   ├── http/
@@ -362,17 +425,19 @@ zempo-api/
 │   │   ├── auth.ts            # Autenticação por API Key
 │   │   └── errorHandler.ts    # Tratamento centralizado de erros
 │   ├── parsers/
-│   │   ├── athleteParser.ts   # Extrai dados do HTML de atletas
-│   │   ├── clubsParser.ts     # Extrai dados do HTML de clubes
-│   │   └── parserUtils.ts     # Utilitários de parse
+│   │   ├── athleteParser.ts       # Extrai dados do HTML de atletas
+│   │   ├── clubsParser.ts         # Extrai dados do HTML de clubes
+│   │   ├── clubDetailsParser.ts   # Extrai detalhes do HTML de um clube
+│   │   └── parserUtils.ts         # Utilitários de parse
 │   ├── routes/
 │   │   ├── index.ts           # Router principal (monta sub-routers)
 │   │   ├── athletes.ts        # GET /atleta/:id, GET /atleta/codigo/:codigo
-│   │   ├── clubs.ts           # GET /clubes
+│   │   ├── clubs.ts           # GET /clubes, GET /clubes/:id
 │   │   └── admin.ts           # GET /status, POST /cache/*, POST /session/invalidate
 │   ├── services/
-│   │   ├── athleteService.ts  # Orquestra fetch + cache + parse de atletas
-│   │   └── clubsService.ts    # Orquestra fetch + cache + parse de clubes
+│   │   ├── athleteService.ts      # Orquestra fetch + cache + parse de atletas
+│   │   ├── clubsService.ts        # Orquestra fetch + cache + parse de clubes
+│   │   └── clubDetailsService.ts  # Orquestra fetch + cache + parse de detalhe de clube
 │   ├── types/
 │   │   └── index.ts           # Interfaces TypeScript
 │   ├── utils/

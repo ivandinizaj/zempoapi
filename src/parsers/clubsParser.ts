@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import type { Club, ClubsPage } from "../types";
+import type { Club, ClubsPage, Parsed } from "../types";
 import { resolveAbsoluteUrl } from "../utils/url";
 import { normalizeText } from "../utils/text";
 import type { CheerioAPI } from "./parserUtils";
@@ -22,7 +22,7 @@ function extractTotal($: CheerioAPI): number {
 export function parseClubesData(
   html: string,
   baseUrl = "https://zempo.com.br",
-): ClubsPage {
+): Parsed<ClubsPage> {
   const $ = cheerio.load(html);
   const total = extractTotal($);
   const clubes: Club[] = [];

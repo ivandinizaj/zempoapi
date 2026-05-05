@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import type { Athlete } from "../types";
+import type { Athlete, Parsed } from "../types";
 import { resolveAbsoluteUrl } from "../utils/url";
 import { parseCodigo } from "../utils/coding";
 import { buildPageIndex, type CheerioAPI, type PageIndex } from "./parserUtils";
@@ -124,7 +124,7 @@ function extractGenero(index: PageIndex): "masculino" | "feminino" | null {
   return null;
 }
 
-export function parseUserData(html: string, baseUrl = "https://zempo.com.br"): Athlete {
+export function parseUserData(html: string, baseUrl = "https://zempo.com.br"): Parsed<Athlete> {
   const $ = cheerio.load(html);
   const index = buildPageIndex($);
 

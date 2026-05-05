@@ -12,8 +12,8 @@ router.get("/:id", asyncRoute(async (req, res) => {
   if (err) throw new ValidationError(err);
 
   try {
-    const { data, cached } = await getAthleteById(id, req.query["refresh"] === "true");
-    res.json({ success: true, _cached: cached, data });
+    const { data, cached, _parsedAt } = await getAthleteById(id, req.query["refresh"] === "true");
+    res.json({ success: true, _cached: cached, _parsedAt, data });
   } catch (e) {
     if (e instanceof AppError) throw e;
     throw new GatewayError(e);
@@ -26,8 +26,8 @@ router.get("/codigo/:codigo", asyncRoute(async (req, res) => {
   if (err) throw new ValidationError(err);
 
   try {
-    const { data, cached } = await getAthleteByCode(codigo, req.query["refresh"] === "true");
-    res.json({ success: true, _cached: cached, data });
+    const { data, cached, _parsedAt } = await getAthleteByCode(codigo, req.query["refresh"] === "true");
+    res.json({ success: true, _cached: cached, _parsedAt, data });
   } catch (e) {
     if (e instanceof AppError) throw e;
     throw new GatewayError(e);

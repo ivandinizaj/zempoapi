@@ -1,6 +1,12 @@
 import { Router } from "express";
 import { getClubes } from "../services/clubsService";
-import { validatePagina, validateOrdem, validateFiltroEstado } from "../validators";
+import { getClubDetails } from "../services/clubDetailsService";
+import {
+  validatePagina,
+  validateOrdem,
+  validateFiltroEstado,
+  validateClubId,
+} from "../validators";
 import { AppError, GatewayError, ValidationError } from "../errors/AppError";
 import { asyncRoute } from "../middleware/asyncRoute";
 import { siglaToFiltro } from "../utils/estadoMapper";
@@ -24,11 +30,13 @@ router.get(
       if (filtroErr) throw new ValidationError(filtroErr);
     }
 
-    const filtroNumerico = filtro ? siglaToFiltro(filtro) ?? undefined : undefined;
+    const filtroNumerico = filtro
+      ? (siglaToFiltro(filtro) ?? undefined)
+      : undefined;
     const forceRefresh = req.query["refresh"] === "true";
 
     try {
-      const { data, cached } = await getClubes({
+      const { data, cached, _parsedAt } = await getClubes({
         filtro: filtroNumerico,
         ordem,
         pagina,
@@ -37,10 +45,35 @@ router.get(
       res.json({
         success: true,
         _cached: cached,
-        _parsedAt: data._parsedAt,
+        _parsedAt,
         pagina: data.pagina,
         total: data.total,
         data: data.clubes,
+      });
+    } catch (e) {
+      if (e instanceof AppError) throw e;
+      throw new GatewayError(e);
+    }
+  }),
+);
+
+router.get(
+  "/:id",
+  asyncRoute(async (req, res) => {
+    const { id } = req.params;
+
+    const idErr = validateClubId(id);
+    if (idErr) throw new ValidationError(idErr);
+
+    const forceRefresh = req.query["refresh"] === "true";
+
+    try {
+      const { data, cached, _parsedAt } = await getClubDetails(id, { forceRefresh });
+      res.json({
+        success: true,
+        _cached: cached,
+        _parsedAt,
+        data,
       });
     } catch (e) {
       if (e instanceof AppError) throw e;

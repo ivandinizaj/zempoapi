@@ -27,7 +27,6 @@ export interface Athlete {
   emailTecnico: string | null;
   cpf: string | null;
   foto: string | null;
-  _parsedAt: string;
 }
 
 export interface Club {
@@ -44,12 +43,14 @@ export interface ClubsPage {
   clubes: Club[];
   total: number;
   pagina: number;
-  _parsedAt: string;
 }
+
+export type Parsed<T> = T & { _parsedAt: string };
 
 export interface ServiceResult<T> {
   data: T;
   cached: boolean;
+  _parsedAt: string;
 }
 
 export interface CacheEntryStats {
@@ -80,5 +81,33 @@ export interface GetClubesOptions {
   filtro?: string | number;
   ordem?: string;
   pagina?: number;
+  forceRefresh?: boolean;
+}
+
+export interface ClubDetails {
+  codigo: string | null;
+  nome: string | null;
+  sigla: string | null;
+  federacao: string | null;
+  cnpj: string | null;
+  email: string | null;
+  website: string | null;
+  federado: boolean | null;
+  telefone: string | null;
+  status: string | null;
+  cep: string | null;
+  endereco: string | null;
+  estado: string | null;
+  bairro: string | null;
+  complemento: string | null;
+  cidade: string | null;
+  facebook: string | null;
+  instagram: string | null;
+  whatsapp: string | null;
+  twitter: string | null;
+  youtube: string | null;
+}
+
+export interface GetClubDetailsOptions {
   forceRefresh?: boolean;
 }

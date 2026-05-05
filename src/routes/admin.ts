@@ -2,6 +2,7 @@ import { Router } from "express";
 import sessionCache from "../cache/SessionCache";
 import atletasCache from "../cache/atletasCache";
 import clubesCache from "../cache/clubesCache";
+import clubDetailsCache from "../cache/clubDetailsCache";
 
 const router = Router();
 
@@ -14,11 +15,13 @@ router.get("/status", (_req, res) => {
     caches: {
       atletas: atletasCache.getStats(),
       clubes: clubesCache.getStats(),
+      clubesDetalhes: clubDetailsCache.getStats(),
     },
     config: {
       sessionTTL: parseInt(process.env.SESSION_CACHE_TTL ?? "3600"),
       atletasTTL: parseInt(process.env.USER_DATA_CACHE_TTL ?? "3600"),
       clubesTTL: parseInt(process.env.CLUBES_CACHE_TTL ?? "172800"),
+      clubeDetalhesTTL: parseInt(process.env.CLUB_DETAILS_CACHE_TTL ?? "86400"),
       baseUrl: process.env.ZEMPO_BASE_URL ?? "https://zempo.com.br",
     },
   });
@@ -38,9 +41,10 @@ router.post("/cache/invalidate/:id", (req, res) => {
 router.post("/cache/flush", (_req, res) => {
   const atletas = atletasCache.flush();
   const clubes = clubesCache.flush();
+  const clubDetalhes = clubDetailsCache.flush();
   res.json({
     success: true,
-    message: `Cache limpo — ${atletas} atleta(s) e ${clubes} consulta(s) de clubes removidas`,
+    message: `Cache limpo — ${atletas} atleta(s), ${clubes} consulta(s) de clubes e ${clubDetalhes} detalhe(s) de clube removidos`,
   });
 });
 

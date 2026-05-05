@@ -1,7 +1,7 @@
 import clubesCache from "../cache/clubesCache";
 import { fetchPage, BASE_URL } from "../http/zempoClient";
 import { parseClubesData } from "../parsers/clubsParser";
-import type { ClubsPage, GetClubesOptions, ServiceResult } from "../types";
+import type { ClubsPage, GetClubesOptions, Parsed, ServiceResult } from "../types";
 
 export async function getClubes({
   filtro,
@@ -14,7 +14,10 @@ export async function getClubes({
 
   if (!forceRefresh) {
     const cached = clubesCache.get(cacheKey);
-    if (cached) return { data: cached, cached: true };
+    if (cached) {
+      const { _parsedAt, ...data } = cached;
+      return { data, cached: true, _parsedAt };
+    }
   }
 
   const params = new URLSearchParams({
@@ -27,8 +30,9 @@ export async function getClubes({
 
   const html = await fetchPage(`${BASE_URL}/?${params}`);
   const parsed = parseClubesData(html, BASE_URL);
-  const result: ClubsPage = { ...parsed, pagina: Number(pagina) };
+  const result: Parsed<ClubsPage> = { ...parsed, pagina: Number(pagina) };
 
   clubesCache.set(cacheKey, result);
-  return { data: result, cached: false };
+  const { _parsedAt, ...data } = result;
+  return { data, cached: false, _parsedAt };
 }

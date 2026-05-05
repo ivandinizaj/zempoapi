@@ -30,3 +30,9 @@ export function validateFiltroEstado(filtro: string): string | null {
   if (isValidEstadoSigla(filtro)) return null;
   return `Sigla de estado inválida. Use uma das siglas: ${getValidSiglas().join(", ")}`;
 }
+
+export function validateClubId(id: string): string | null {
+  if (/^\d+$/.test(id)) return null;
+  if (/^CL\d+$/i.test(id)) return null;
+  return "ID inválido. Use o ID numérico (ex: 2294) ou o código do clube (ex: CL002294)";
+}
