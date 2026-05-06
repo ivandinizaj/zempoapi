@@ -6,7 +6,11 @@
       "Bash(npm install *)",
       "Bash(npx jest *)",
       "Bash(npx tsc *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(mkdir -p /Users/ivand/projects/zempoapi/.vscode)"
+    ],
+    "additionalDirectories": [
+      "/Users/ivand/projects/zempoapi"
     ]
   }
 }

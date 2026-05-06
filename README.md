@@ -17,7 +17,7 @@ cd zempo-api
 npm install
 
 # Configure o ambiente
-cp .env.example .env
+cp env.example .env
 # Edite o .env com suas credenciais
 ```
 
@@ -73,11 +73,13 @@ npm test
 ## 📡 Endpoints
 
 ### `GET /`
+
 Retorna um resumo da API com os endpoints disponíveis e o modo de autenticação ativo.
 
 ---
 
 ### `GET /api/atleta/:id`
+
 Busca dados de um atleta pelo **ID numérico interno** do ZEMPO.
 
 ```bash
@@ -91,6 +93,7 @@ curl http://localhost:3000/api/atleta/79588?refresh=true \
 ```
 
 **Resposta:**
+
 ```json
 {
   "success": true,
@@ -134,6 +137,7 @@ curl http://localhost:3000/api/atleta/79588?refresh=true \
 ---
 
 ### `GET /api/atleta/codigo/:codigo`
+
 Busca por **código público** (formato `JU` + números).
 
 ```bash
@@ -144,35 +148,36 @@ curl http://localhost:3000/api/atleta/codigo/JU079588 \
 ---
 
 ### `GET /api/clubes`
+
 Lista clubes cadastrados no ZEMPO com suporte a filtro por estado, ordenação e paginação.
 
 **Query params:**
 
-| Parâmetro | Tipo | Obrigatório | Descrição |
-|-----------|------|-------------|-----------|
-| `filtro` | number | não | ID do estado no ZEMPO. Omitir para todos os estados. |
-| `ordem` | string | não | `DESC` para decrescente. Omitir para crescente (padrão). |
-| `pagina` | number | não | Número da página (padrão: `1`). |
+| Parâmetro | Tipo   | Obrigatório | Descrição                                                |
+| --------- | ------ | ----------- | -------------------------------------------------------- |
+| `filtro`  | number | não         | ID do estado no ZEMPO. Omitir para todos os estados.     |
+| `ordem`   | string | não         | `DESC` para decrescente. Omitir para crescente (padrão). |
+| `pagina`  | number | não         | Número da página (padrão: `1`).                          |
 
 **IDs de estado disponíveis:**
 
-| ID | Estado | ID | Estado |
-|----|--------|----|--------|
-| 1 | Acre | 16 | Paraná |
-| 2 | Alagoas | 17 | Pernambuco |
-| 3 | Amapá | 18 | Piauí |
-| 4 | Amazonas | 19 | Rio de Janeiro |
-| 5 | Bahia | 20 | Rio Grande do Norte |
-| 6 | Ceará | 21 | Rio Grande do Sul |
-| 7 | Distrito Federal | 22 | Rondônia |
-| 8 | Espírito Santo | 23 | Roraima |
-| 9 | Goiás | 24 | Santa Catarina |
-| 10 | Maranhão | 25 | São Paulo |
-| 11 | Mato Grosso | 26 | Sergipe |
-| 12 | Mato Grosso do Sul | 27 | Tocantins |
-| 13 | Minas Gerais | 29 | Natal |
-| 14 | Pará | 30 | Belém |
-| 15 | Paraíba | 31 | Londrina |
+| ID  | Estado             | ID  | Estado              |
+| --- | ------------------ | --- | ------------------- |
+| 1   | Acre               | 16  | Paraná              |
+| 2   | Alagoas            | 17  | Pernambuco          |
+| 3   | Amapá              | 18  | Piauí               |
+| 4   | Amazonas           | 19  | Rio de Janeiro      |
+| 5   | Bahia              | 20  | Rio Grande do Norte |
+| 6   | Ceará              | 21  | Rio Grande do Sul   |
+| 7   | Distrito Federal   | 22  | Rondônia            |
+| 8   | Espírito Santo     | 23  | Roraima             |
+| 9   | Goiás              | 24  | Santa Catarina      |
+| 10  | Maranhão           | 25  | São Paulo           |
+| 11  | Mato Grosso        | 26  | Sergipe             |
+| 12  | Mato Grosso do Sul | 27  | Tocantins           |
+| 13  | Minas Gerais       | 29  | Natal               |
+| 14  | Pará               | 30  | Belém               |
+| 15  | Paraíba            | 31  | Londrina            |
 
 ```bash
 # Todos os clubes, página 1
@@ -193,6 +198,7 @@ curl "http://localhost:3000/api/clubes?ordem=DESC" \
 ```
 
 **Resposta:**
+
 ```json
 {
   "success": true,
@@ -219,13 +225,14 @@ curl "http://localhost:3000/api/clubes?ordem=DESC" \
 ---
 
 ### `GET /api/clubes/:id`
+
 Retorna os **detalhes completos de um clube** pelo ID numérico ou código público.
 
 **Formatos aceitos para `:id`:**
 
-| Formato | Exemplo |
-|---------|---------|
-| ID numérico | `2294` |
+| Formato         | Exemplo    |
+| --------------- | ---------- |
+| ID numérico     | `2294`     |
 | Código do clube | `CL002294` |
 
 ```bash
@@ -243,6 +250,7 @@ curl "http://localhost:3000/api/clubes/2294?refresh=true" \
 ```
 
 **Resposta:**
+
 ```json
 {
   "success": true,
@@ -278,6 +286,7 @@ curl "http://localhost:3000/api/clubes/2294?refresh=true" \
 ---
 
 ### `GET /api/status`
+
 Status da API, sessão e caches.
 
 ```bash
@@ -285,6 +294,7 @@ curl http://localhost:3000/api/status -H "X-API-Key: minha_chave"
 ```
 
 **Resposta:**
+
 ```json
 {
   "success": true,
@@ -301,7 +311,12 @@ curl http://localhost:3000/api/status -H "X-API-Key: minha_chave"
       "totalEntries": 1,
       "ttlSeconds": 3600,
       "entries": [
-        { "key": "79588", "cachedAt": "2026-05-01T15:00:00.000Z", "expiresInSeconds": 3200, "label": "Ivan Diniz de Araújo Júnior" }
+        {
+          "key": "79588",
+          "cachedAt": "2026-05-01T15:00:00.000Z",
+          "expiresInSeconds": 3200,
+          "label": "Ivan Diniz de Araújo Júnior"
+        }
       ]
     },
     "clubes": {
@@ -323,6 +338,7 @@ curl http://localhost:3000/api/status -H "X-API-Key: minha_chave"
 ---
 
 ### `POST /api/cache/invalidate/:id`
+
 Invalida o cache de dados de **um atleta específico**.
 
 ```bash
@@ -333,6 +349,7 @@ curl -X POST http://localhost:3000/api/cache/invalidate/79588 \
 ---
 
 ### `POST /api/cache/flush`
+
 Limpa **todo** o cache de dados (atletas e clubes).
 
 ```bash
@@ -341,6 +358,7 @@ curl -X POST http://localhost:3000/api/cache/flush \
 ```
 
 **Resposta:**
+
 ```json
 {
   "success": true,
@@ -351,6 +369,7 @@ curl -X POST http://localhost:3000/api/cache/flush \
 ---
 
 ### `POST /api/session/invalidate`
+
 Força um novo login no ZEMPO na próxima requisição.
 
 ```bash
@@ -379,6 +398,7 @@ Requisição → DataCache (HIT?) ──→ Retorna dados em memória (~0ms)
 ```
 
 **Por que é rápido:**
+
 - **Cache de dados:** mesma pessoa consultada 2x → 2ª chamada retorna de memória em <1ms
 - **Cache de sessão:** o login costuma ser lento (~500ms) e é feito no máximo 1x por hora
 - **Lock de login:** se 100 requests chegarem simultaneamente, apenas 1 login acontece; os outros 99 aguardam e reutilizam a sessão

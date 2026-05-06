@@ -48,7 +48,7 @@ class SessionCache {
       redirect: "manual",
     });
 
-    const rawCookies = (response.headers.raw()["set-cookie"] ?? []) as string[];
+    const rawCookies = (response.headers.raw()["set-cookie"] ?? []);
     const phpSessId = rawCookies
       .map((c) => c.match(/PHPSESSID=([^;]+)/i)?.[1])
       .find(Boolean);

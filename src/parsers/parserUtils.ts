@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+import type * as cheerio from "cheerio";
 import { normalizeText } from "../utils/text";
 
 export type CheerioAPI = ReturnType<typeof cheerio.load>;
@@ -47,16 +47,14 @@ export function buildPageIndex($: CheerioAPI): PageIndex {
       next = {
         text: nextText,
         spanFonte13: normalizeText($next.find("span.fonte13").text()) || null,
-        imgGraduacaoAlt:
-          ($next.find("img[src*='graduacoes']").attr("alt") ?? "").trim() ||
-          null,
+        imgGraduacaoAlt: ($next.find("img[src*='graduacoes']").attr("alt") ?? "").trim() || null,
       };
       if (!labels.has(lower)) labels.set(lower, nextText);
     } else {
       const rowNext = $el
         .closest("tr")
         .find("td")
-        .eq(($el as any).index() + 1);
+        .eq($el.index() + 1);
       if (rowNext.length && !labels.has(lower)) {
         labels.set(lower, normalizeText(rowNext.text()));
       }

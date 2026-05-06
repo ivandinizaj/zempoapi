@@ -48,7 +48,7 @@ async function get(url: string): Promise<string> {
     const response = await fetch(url, {
       method: "GET",
       headers: { Cookie: cookie, ...BROWSER_HEADERS },
-      signal: controller.signal as any,
+      signal: controller.signal,
     });
 
     if (response.status >= 500) {
@@ -66,7 +66,9 @@ async function fetchWithRetry(url: string): Promise<string> {
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     if (attempt > 0) {
       const backoff = 200 * 2 ** (attempt - 1); // 200ms, 400ms
-      console.warn(`[ZempoClient] Tentativa ${attempt + 1}/${MAX_RETRIES + 1} em ${backoff}ms — ${(lastErr as Error).message}`);
+      console.warn(
+        `[ZempoClient] Tentativa ${attempt + 1}/${MAX_RETRIES + 1} em ${backoff}ms — ${(lastErr as Error).message}`,
+      );
       await sleep(backoff);
     }
     try {
