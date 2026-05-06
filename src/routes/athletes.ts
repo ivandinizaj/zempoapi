@@ -6,6 +6,49 @@ import { asyncRoute } from "../middleware/asyncRoute";
 
 const router = Router();
 
+/**
+ * @openapi
+ * /atleta/{id}:
+ *   get:
+ *     tags: [Atletas]
+ *     summary: Busca atleta por ID numérico
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: "ID numérico do atleta (ex: 79588)"
+ *       - in: query
+ *         name: refresh
+ *         schema:
+ *           type: boolean
+ *         description: Força atualização ignorando o cache
+ *     responses:
+ *       '200':
+ *         description: Atleta encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 _cached:
+ *                   type: boolean
+ *                 _parsedAt:
+ *                   type: string
+ *                   format: date-time
+ *                 data:
+ *                   $ref: '#/components/schemas/Athlete'
+ *       '400':
+ *         $ref: '#/components/responses/ValidationError'
+ *       '401':
+ *         $ref: '#/components/responses/Unauthorized'
+ *       '502':
+ *         $ref: '#/components/responses/GatewayError'
+ */
 router.get(
   "/:id",
   asyncRoute(async (req, res) => {
@@ -23,6 +66,49 @@ router.get(
   }),
 );
 
+/**
+ * @openapi
+ * /atleta/codigo/{codigo}:
+ *   get:
+ *     tags: [Atletas]
+ *     summary: Busca atleta por código público
+ *     parameters:
+ *       - in: path
+ *         name: codigo
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: "Código público do atleta (ex: JU079588)"
+ *       - in: query
+ *         name: refresh
+ *         schema:
+ *           type: boolean
+ *         description: Força atualização ignorando o cache
+ *     responses:
+ *       '200':
+ *         description: Atleta encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 _cached:
+ *                   type: boolean
+ *                 _parsedAt:
+ *                   type: string
+ *                   format: date-time
+ *                 data:
+ *                   $ref: '#/components/schemas/Athlete'
+ *       '400':
+ *         $ref: '#/components/responses/ValidationError'
+ *       '401':
+ *         $ref: '#/components/responses/Unauthorized'
+ *       '502':
+ *         $ref: '#/components/responses/GatewayError'
+ */
 router.get(
   "/codigo/:codigo",
   asyncRoute(async (req, res) => {

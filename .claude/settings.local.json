@@ -7,7 +7,13 @@
       "Bash(npx jest *)",
       "Bash(npx tsc *)",
       "Bash(npm run *)",
-      "Bash(mkdir -p /Users/ivand/projects/zempoapi/.vscode)"
+      "Bash(mkdir -p /Users/ivand/projects/zempoapi/.vscode)",
+      "Bash(npx ts-node *)",
+      "Bash(curl -s http://localhost:3000/api/docs/)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(kill %1)",
+      "Bash(lsof -ti:3001)",
+      "Bash(xargs kill -9)"
     ],
     "additionalDirectories": [
       "/Users/ivand/projects/zempoapi"

@@ -13,6 +13,67 @@ import { siglaToFiltro } from "../utils/estadoMapper";
 
 const router = Router();
 
+/**
+ * @openapi
+ * /clubes:
+ *   get:
+ *     tags: [Clubes]
+ *     summary: Lista clubes com filtros opcionais
+ *     parameters:
+ *       - in: query
+ *         name: filtro
+ *         schema:
+ *           type: string
+ *         description: "Sigla do estado para filtrar (ex: SP, RJ, MG)"
+ *       - in: query
+ *         name: ordem
+ *         schema:
+ *           type: string
+ *           enum: [ASC, DESC, '']
+ *         description: Ordenação por nome do clube
+ *       - in: query
+ *         name: pagina
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Número da página
+ *       - in: query
+ *         name: refresh
+ *         schema:
+ *           type: boolean
+ *         description: Força atualização ignorando o cache
+ *     responses:
+ *       '200':
+ *         description: Lista de clubes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 _cached:
+ *                   type: boolean
+ *                 _parsedAt:
+ *                   type: string
+ *                   format: date-time
+ *                 pagina:
+ *                   type: integer
+ *                 total:
+ *                   type: integer
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Club'
+ *       '400':
+ *         $ref: '#/components/responses/ValidationError'
+ *       '401':
+ *         $ref: '#/components/responses/Unauthorized'
+ *       '502':
+ *         $ref: '#/components/responses/GatewayError'
+ */
 router.get(
   "/",
   asyncRoute(async (req, res) => {
@@ -57,6 +118,49 @@ router.get(
   }),
 );
 
+/**
+ * @openapi
+ * /clubes/{id}:
+ *   get:
+ *     tags: [Clubes]
+ *     summary: Detalhes de um clube por ID ou código
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: "ID numérico ou código do clube (ex: 2294 ou CL002294)"
+ *       - in: query
+ *         name: refresh
+ *         schema:
+ *           type: boolean
+ *         description: Força atualização ignorando o cache
+ *     responses:
+ *       '200':
+ *         description: Detalhes do clube
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 _cached:
+ *                   type: boolean
+ *                 _parsedAt:
+ *                   type: string
+ *                   format: date-time
+ *                 data:
+ *                   $ref: '#/components/schemas/ClubDetails'
+ *       '400':
+ *         $ref: '#/components/responses/ValidationError'
+ *       '401':
+ *         $ref: '#/components/responses/Unauthorized'
+ *       '502':
+ *         $ref: '#/components/responses/GatewayError'
+ */
 router.get(
   "/:id",
   asyncRoute(async (req, res) => {

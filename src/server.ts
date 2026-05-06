@@ -1,8 +1,10 @@
 import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
+import swaggerUi from "swagger-ui-express";
 import apiRoutes from "./routes";
 import { errorHandler } from "./middleware/errorHandler";
+import { swaggerSpec } from "./docs/swagger";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -39,10 +41,15 @@ app.get("/", (_req, res) => {
     auth: process.env.API_KEY
       ? "API Key necessária (header X-API-Key ou ?api_key=)"
       : "Sem autenticação (defina API_KEY no .env para habilitar)",
+    docs: "/api/docs",
   });
 });
 
 app.use(`/api/${API_VERSION}`, apiRoutes);
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customSiteTitle: "ZEMPO CBJ API — Docs",
+}));
 
 app.use((_req, res) => {
   res.status(404).json({ error: "Not Found" });
@@ -53,6 +60,7 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`\n🥋 ZEMPO CBJ API rodando em http://localhost:${PORT}`);
   console.log(`📊 Status: http://localhost:${PORT}/api/${API_VERSION}/status`);
+  console.log(`📖 Docs:   http://localhost:${PORT}/api/docs`);
   console.log(
     `🔑 Auth: ${process.env.API_KEY ? "API Key ativa" : "Sem autenticação (dev mode)"}\n`,
   );
