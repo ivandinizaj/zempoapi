@@ -15,7 +15,6 @@ const options: swaggerJsdoc.Options = {
     components: {
       securitySchemes: {
         ApiKeyHeader: { type: "apiKey", in: "header", name: "X-API-Key" },
-        ApiKeyQuery: { type: "apiKey", in: "query", name: "api_key" },
       },
       schemas: {
         Athlete: {
