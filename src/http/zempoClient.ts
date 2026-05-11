@@ -55,7 +55,11 @@ async function get(url: string): Promise<string> {
       throw new RetryableError(`ZEMPO retornou ${response.status}`);
     }
 
-    return response.text();
+    const buffer = await response.buffer();
+    const head = buffer.slice(0, 1024).toString("ascii");
+    const charsetMatch = head.match(/charset=([\w-]+)/i);
+    const charset = charsetMatch ? charsetMatch[1] : "utf-8";
+    return new TextDecoder(charset).decode(buffer);
   } finally {
     clearTimeout(timerId);
   }
