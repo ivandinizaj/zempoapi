@@ -1,11 +1,12 @@
 import swaggerJsdoc from "swagger-jsdoc";
+import { version } from "../../package.json";
 
 const options: swaggerJsdoc.Options = {
   definition: {
     openapi: "3.0.0",
     info: {
       title: "ZEMPO CBJ API",
-      version: "1.0.0",
+      version,
       description:
         "API não oficial para consulta de dados do ZEMPO — Confederação Brasileira de Judô.\n\n" +
         "Autenticação via `X-API-Key` (header) ou `api_key` (query param) quando `API_KEY` estiver configurada no servidor.",

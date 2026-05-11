@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import { version } from "../package.json";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import apiRoutes from "./routes";
@@ -28,7 +29,7 @@ app.get("/", (_req, res) => {
   res.json({
     name: "ZEMPO CBJ API",
     description: "API não oficial para consulta de dados do ZEMPO - Confederação Brasileira de Judô",
-    version: "1.0.0",
+    version,
     endpoints: {
       [`GET /api/${API_VERSION}/atleta/:id`]: "Busca atleta por ID numérico",
       [`GET /api/${API_VERSION}/atleta/codigo/:codigo`]: "Busca atleta por código (ex: JU079588)",

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { version } from "../../package.json";
 import sessionCache from "../cache/SessionCache";
 import atletasCache from "../cache/atletasCache";
 import clubesCache from "../cache/clubesCache";
@@ -36,7 +37,7 @@ router.get("/status", (_req, res) => {
   res.json({
     success: true,
     api: "ZEMPO CBJ API",
-    version: "1.0.0",
+    version,
     session: sessionCache.getInfo(),
     caches: {
       atletas: atletasCache.getStats(),
