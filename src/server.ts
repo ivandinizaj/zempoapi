@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { version } from "../package.json";
 import morgan from "morgan";
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import swaggerUi from "swagger-ui-express";
 import apiRoutes from "./routes";
 import { errorHandler } from "./middleware/errorHandler";
@@ -21,14 +22,18 @@ app.use((req, res, next) => {
   if (corsOrigin) res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Headers", "X-API-Key, Content-Type");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  if (req.method === "OPTIONS") { res.sendStatus(204); return; }
+  if (req.method === "OPTIONS") {
+    res.sendStatus(204);
+    return;
+  }
   next();
 });
 
 app.get("/", (_req, res) => {
   res.json({
     name: "ZEMPO CBJ API",
-    description: "API não oficial para consulta de dados do ZEMPO - Confederação Brasileira de Judô",
+    description:
+      "API não oficial para consulta de dados do ZEMPO - Confederação Brasileira de Judô",
     version,
     endpoints: {
       [`GET /api/${API_VERSION}/atleta/:id`]: "Busca atleta por ID numérico",
@@ -39,18 +44,35 @@ app.get("/", (_req, res) => {
       [`POST /api/${API_VERSION}/cache/flush`]: "Limpa todo o cache",
       [`POST /api/${API_VERSION}/session/invalidate`]: "Força novo login no ZEMPO",
     },
-    auth: process.env.API_KEY
-      ? "API Key necessária (header X-API-Key ou ?api_key=)"
-      : "Sem autenticação (defina API_KEY no .env para habilitar)",
+    auth:
+      process.env.API_KEY || process.env.API_KEYS
+        ? "API Key necessária (header X-API-Key)"
+        : "Sem autenticação (defina API_KEYS no .env para habilitar)",
     docs: "/api/docs",
   });
 });
 
-app.use(`/api/${API_VERSION}`, apiRoutes);
+app.use(
+  `/api/${API_VERSION}`,
+  rateLimit({
+    windowMs: 60 * 1000,
+    max: 30,
+    keyGenerator: (req) =>
+      (req.headers["x-api-key"] as string) ?? ipKeyGenerator(req.ip ?? "anonymous"),
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: "Too Many Requests", message: "Limite requisições atingido." },
+  }),
+  apiRoutes,
+);
 
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-  customSiteTitle: "ZEMPO CBJ API — Docs",
-}));
+app.use(
+  "/api/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    customSiteTitle: "ZEMPO CBJ API — Docs",
+  }),
+);
 
 app.use((_req, res) => {
   res.status(404).json({ error: "Not Found" });
