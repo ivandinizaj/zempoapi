@@ -4,6 +4,7 @@ import sessionCache from "../cache/SessionCache";
 import atletasCache from "../cache/atletasCache";
 import clubesCache from "../cache/clubesCache";
 import clubDetailsCache from "../cache/clubDetailsCache";
+import { getKeyStats } from "../middleware/keyMetrics";
 
 const router = Router();
 
@@ -44,6 +45,7 @@ router.get("/status", (_req, res) => {
       clubes: clubesCache.getStats(),
       clubesDetalhes: clubDetailsCache.getStats(),
     },
+    keys: getKeyStats(),
     config: {
       sessionTTL: parseInt(process.env.SESSION_CACHE_TTL ?? "3600"),
       atletasTTL: parseInt(process.env.USER_DATA_CACHE_TTL ?? "3600"),

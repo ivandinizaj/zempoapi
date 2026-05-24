@@ -1,8 +1,11 @@
 import "dotenv/config";
+import { randomUUID } from "crypto";
 import express from "express";
+import type { Request } from "express";
 import { version } from "../package.json";
-import morgan from "morgan";
+import pinoHttp from "pino-http";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
+import logger from "./utils/logger";
 import swaggerUi from "swagger-ui-express";
 import apiRoutes from "./routes";
 import { errorHandler } from "./middleware/errorHandler";
@@ -13,7 +16,17 @@ const PORT = process.env.PORT ?? 3000;
 const API_VERSION = "v1";
 
 app.use(express.json());
-app.use(morgan(":method :url :status :res[content-length] - :response-time ms"));
+app.use(
+  pinoHttp({
+    logger,
+    genReqId: (_req, res) => {
+      const id = randomUUID();
+      res.setHeader("X-Request-Id", id);
+      return id;
+    },
+    customProps: (req) => ({ keyLabel: (req as Request).keyLabel }),
+  }),
+);
 
 // "*" só em dev (sem API_KEY); em prod, definir CORS_ORIGIN explicitamente
 const corsOrigin = process.env.CORS_ORIGIN ?? (process.env.API_KEY ? "" : "*");

@@ -1,4 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
+import logger from "../utils/logger";
+import { recordRequest } from "./keyMetrics";
 
 function loadValidKeys(): Map<string, string> {
   const keys = new Map<string, string>();
@@ -11,7 +13,7 @@ function loadValidKeys(): Map<string, string> {
         if (typeof label === "string") keys.set(key, label);
       }
     } catch {
-      console.error("[auth] API_KEYS inválido — JSON malformado. Ignorando.");
+      logger.error("[auth] API_KEYS inválido — JSON malformado. Ignorando.");
     }
   }
 
@@ -41,5 +43,8 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
     return;
   }
 
+  const label = validKeys.get(providedKey as string)!;
+  req.keyLabel = label;
+  recordRequest(label);
   next();
 }
