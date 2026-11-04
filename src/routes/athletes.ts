@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getAthleteById, getAthleteByCode } from "../services/athleteService";
 import { validateAthleteId, validateAtletaCodigo } from "../validators";
-import { AppError, GatewayError, ValidationError } from "../errors/AppError";
+import { ValidationError } from "../errors/AppError";
 import { asyncRoute } from "../middleware/asyncRoute";
 
 const router = Router();
@@ -56,13 +56,8 @@ router.get(
     const err = validateAthleteId(id);
     if (err) throw new ValidationError(err);
 
-    try {
-      const { data, cached, _parsedAt } = await getAthleteById(id, req.query["refresh"] === "true");
-      res.json({ success: true, _cached: cached, _parsedAt, data });
-    } catch (e) {
-      if (e instanceof AppError) throw e;
-      throw new GatewayError(e);
-    }
+    const { data, cached, _parsedAt } = await getAthleteById(id, req.query["refresh"] === "true");
+    res.json({ success: true, _cached: cached, _parsedAt, data });
   }),
 );
 
@@ -116,16 +111,11 @@ router.get(
     const err = validateAtletaCodigo(codigo);
     if (err) throw new ValidationError(err);
 
-    try {
-      const { data, cached, _parsedAt } = await getAthleteByCode(
-        codigo,
-        req.query["refresh"] === "true",
-      );
-      res.json({ success: true, _cached: cached, _parsedAt, data });
-    } catch (e) {
-      if (e instanceof AppError) throw e;
-      throw new GatewayError(e);
-    }
+    const { data, cached, _parsedAt } = await getAthleteByCode(
+      codigo,
+      req.query["refresh"] === "true",
+    );
+    res.json({ success: true, _cached: cached, _parsedAt, data });
   }),
 );
 

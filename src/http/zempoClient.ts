@@ -3,6 +3,7 @@ import pLimit from "p-limit";
 import sessionCache from "../cache/SessionCache";
 import { isSessionExpiredHtml } from "../utils/session";
 import logger from "../utils/logger";
+import { GatewayError } from "../errors/AppError";
 
 export const BASE_URL = process.env.ZEMPO_BASE_URL ?? "https://zempo.com.br";
 
@@ -86,25 +87,37 @@ async function fetchWithRetry(url: string): Promise<string> {
   throw lastErr;
 }
 
-export async function fetchPage(url: string): Promise<string> {
+/** Se o ZEMPO devolver a tela de login, renova a sessão e refaz o envio uma única vez. */
+async function withSessionRenewal(send: () => Promise<string>): Promise<string> {
+  const html = await send();
+  if (!isSessionExpiredHtml(html)) return html;
+
+  logger.info("[ZempoClient] Sessão expirada. Renovando...");
+  sessionCache.invalidate();
+  const retried = await send();
+  if (isSessionExpiredHtml(retried)) {
+    throw new Error("Não foi possível autenticar no ZEMPO após renovar sessão");
+  }
+  return retried;
+}
+
+/**
+ * Executa no limite de concorrência e converte qualquer falha em GatewayError (502):
+ * services e rotas não precisam traduzir erros de comunicação com o ZEMPO.
+ */
+function schedule(send: () => Promise<string>): Promise<string> {
   return limit(async () => {
     try {
-      let html = await fetchWithRetry(url);
-
-      if (isSessionExpiredHtml(html)) {
-        logger.info("[ZempoClient] Sessão expirada. Renovando...");
-        sessionCache.invalidate();
-        html = await get(url);
-
-        if (isSessionExpiredHtml(html)) {
-          throw new Error("Não foi possível autenticar no ZEMPO após renovar sessão");
-        }
-      }
-
-      return html;
+      return await withSessionRenewal(send);
+    } catch (err) {
+      throw new GatewayError(err);
     } finally {
       // mantém o slot ocupado por DELAY_MS para não sobrecarregar o ZEMPO
       await sleep(DELAY_MS);
     }
   });
+}
+
+export function fetchPage(url: string): Promise<string> {
+  return schedule(() => fetchWithRetry(url));
 }
