@@ -111,3 +111,12 @@ export interface ClubDetails {
 export interface GetClubDetailsOptions {
   forceRefresh?: boolean;
 }
+
+export interface Localidade {
+  id: string;
+  nome: string;
+}
+
+export interface LocalidadeList {
+  itens: Localidade[];
+}

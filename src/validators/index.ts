@@ -1,4 +1,5 @@
 import { getValidSiglas, isValidEstadoSigla } from "../utils/estadoMapper";
+import { isNumericId } from "../utils/coding";
 
 export const ATHLETE_ID_REGEX = /^\d+$/;
 export const ATHLETE_CODIGO_REGEX = /^JU\d+$/i;
@@ -32,7 +33,11 @@ export function validateFiltroEstado(filtro: string): string | null {
 }
 
 export function validateClubId(id: string): string | null {
-  if (/^\d+$/.test(id)) return null;
+  if (isNumericId(id)) return null;
   if (/^CL\d+$/i.test(id)) return null;
   return "ID inválido. Use o ID numérico (ex: 2294) ou o código do clube (ex: CL002294)";
+}
+
+export function validateCidadeId(id: string): string | null {
+  return isNumericId(id) ? null : "O ID da cidade deve ser numérico (ex: 5406)";
 }

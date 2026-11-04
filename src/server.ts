@@ -51,6 +51,8 @@ app.get("/", (_req, res) => {
     endpoints: {
       [`GET /api/${API_VERSION}/atleta/:id`]: "Busca atleta por ID numérico",
       [`GET /api/${API_VERSION}/atleta/codigo/:codigo`]: "Busca atleta por código (ex: JU079588)",
+      [`GET /api/${API_VERSION}/localidades/estados/:uf/cidades`]: "Cidades de um estado",
+      [`GET /api/${API_VERSION}/localidades/cidades/:id/bairros`]: "Bairros de uma cidade",
       [`GET /api/${API_VERSION}/clubes`]: "Lista clubes com filtro opcional por estado",
       [`GET /api/${API_VERSION}/status`]: "Status da API, sessão e cache",
       [`POST /api/${API_VERSION}/cache/invalidate/:id`]: "Invalida cache de um atleta",

@@ -41,15 +41,25 @@ function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function get(url: string): Promise<string> {
+export interface PostBody {
+  body: Buffer | string;
+  contentType: string;
+}
+
+async function request(url: string, post?: PostBody): Promise<string> {
   const cookie = await sessionCache.getCookie();
   const controller = new AbortController();
   const timerId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
   try {
     const response = await fetch(url, {
-      method: "GET",
-      headers: { Cookie: cookie, ...BROWSER_HEADERS },
+      method: post ? "POST" : "GET",
+      headers: {
+        Cookie: cookie,
+        ...BROWSER_HEADERS,
+        ...(post ? { "Content-Type": post.contentType } : {}),
+      },
+      body: post?.body,
       signal: controller.signal,
     });
 
@@ -59,7 +69,10 @@ async function get(url: string): Promise<string> {
 
     const buffer = await response.buffer();
     const head = buffer.slice(0, 1024).toString("ascii");
-    const charsetMatch = head.match(/charset=([\w-]+)/i);
+    // fragmentos AJAX (ex: retorno_cidades.php) não têm <meta>, só o header
+    const charsetMatch =
+      response.headers.get("content-type")?.match(/charset=([\w-]+)/i) ??
+      head.match(/charset=([\w-]+)/i);
     const charset = charsetMatch ? charsetMatch[1] : "utf-8";
     return new TextDecoder(charset).decode(buffer);
   } finally {
@@ -78,7 +91,7 @@ async function fetchWithRetry(url: string): Promise<string> {
       await sleep(backoff);
     }
     try {
-      return await get(url);
+      return await request(url);
     } catch (err) {
       if (!isRetryable(err)) throw err;
       lastErr = err;
@@ -120,4 +133,24 @@ function schedule(send: () => Promise<string>): Promise<string> {
 
 export function fetchPage(url: string): Promise<string> {
   return schedule(() => fetchWithRetry(url));
+}
+
+/**
+ * POST autenticado no ZEMPO (ex: submit de formulário). Sem retry em erro de rede/5xx
+ * para não reenviar uma escrita; só refaz uma vez se a sessão tiver expirado,
+ * caso em que o ZEMPO não processou o envio.
+ */
+export function postPage(url: string, post: PostBody): Promise<string> {
+  return schedule(() => request(url, post));
+}
+
+/** POST `application/x-www-form-urlencoded`, como os endpoints AJAX do ZEMPO esperam. */
+export function postForm(
+  url: string,
+  params: Record<string, string> | URLSearchParams,
+): Promise<string> {
+  return postPage(url, {
+    body: new URLSearchParams(params).toString(),
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+  });
 }
