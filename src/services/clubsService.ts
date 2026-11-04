@@ -28,7 +28,7 @@ export async function getClubes({
   if (filtro) params.set("filtro", String(filtro));
   if (pagina > 1) params.set("paginax", String(pagina));
 
-  const html = await fetchPage(`${BASE_URL}/?${params}`);
+  const html = await fetchPage(`${BASE_URL}/?${params.toString()}`);
   const parsed = parseClubesData(html, BASE_URL);
   const result: Parsed<ClubsPage> = { ...parsed, pagina: Number(pagina) };
 

@@ -1,4 +1,5 @@
 import type * as cheerio from "cheerio";
+import type { AnyNode } from "domhandler";
 import { normalizeText } from "../utils/text";
 
 export type CheerioAPI = ReturnType<typeof cheerio.load>;
@@ -20,9 +21,8 @@ export interface PageIndex {
   labels: Map<string, string>;
 }
 
-export function hasAzul($: CheerioAPI, el: unknown): boolean {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const $el = $(el as any);
+export function hasAzul($: CheerioAPI, el: AnyNode): boolean {
+  const $el = $(el);
   return $el.hasClass("azul") || $el.find(".azul").length > 0;
 }
 
@@ -34,8 +34,7 @@ export function buildPageIndex($: CheerioAPI): PageIndex {
   const tds: TdSnapshot[] = [];
   const labels = new Map<string, string>();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  $("td").each((_: number, el: any) => {
+  $("td").each((_, el) => {
     const $el = $(el);
     const text = normalizeText($el.text());
     const lower = text.toLowerCase();

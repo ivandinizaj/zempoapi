@@ -1,12 +1,7 @@
 import { Router } from "express";
 import { getClubes } from "../services/clubsService";
 import { getClubDetails } from "../services/clubDetailsService";
-import {
-  validatePagina,
-  validateOrdem,
-  validateFiltroEstado,
-  validateClubId,
-} from "../validators";
+import { validatePagina, validateOrdem, validateFiltroEstado, validateClubId } from "../validators";
 import { AppError, GatewayError, ValidationError } from "../errors/AppError";
 import { asyncRoute } from "../middleware/asyncRoute";
 import { siglaToFiltro } from "../utils/estadoMapper";
@@ -91,9 +86,7 @@ router.get(
       if (filtroErr) throw new ValidationError(filtroErr);
     }
 
-    const filtroNumerico = filtro
-      ? (siglaToFiltro(filtro) ?? undefined)
-      : undefined;
+    const filtroNumerico = filtro ? (siglaToFiltro(filtro) ?? undefined) : undefined;
     const forceRefresh = req.query["refresh"] === "true";
 
     try {

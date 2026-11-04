@@ -6,7 +6,7 @@ import type { CheerioAPI } from "./parserUtils";
 
 function extractTotal($: CheerioAPI): number {
   let total = 0;
-  $("td").each((_: number, el: any) => {
+  $("td").each((_, el) => {
     const m = $(el)
       .text()
       .trim()
@@ -27,8 +27,7 @@ export function parseClubesData(
   const total = extractTotal($);
   const clubes: Club[] = [];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  $("tr[onmouseover*='setPointer']").each((_: number, row: any) => {
+  $("tr[onmouseover*='setPointer']").each((_, row) => {
     const tds = $(row).find("td");
     if (tds.length < 7) return;
 

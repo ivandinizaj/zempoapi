@@ -2,11 +2,7 @@ import clubDetailsCache from "../cache/clubDetailsCache";
 import { fetchPage, BASE_URL } from "../http/zempoClient";
 import { parseClubDetails } from "../parsers/clubDetailsParser";
 import { parseClubId } from "../utils/coding";
-import type {
-  ClubDetails,
-  GetClubDetailsOptions,
-  ServiceResult,
-} from "../types";
+import type { ClubDetails, GetClubDetailsOptions, ServiceResult } from "../types";
 
 export async function getClubDetails(
   id: string,
@@ -31,7 +27,7 @@ export async function getClubDetails(
     id: zempoId,
   });
 
-  const html = await fetchPage(`${BASE_URL}/?${params}`);
+  const html = await fetchPage(`${BASE_URL}/?${params.toString()}`);
   const parsed = parseClubDetails(html);
   clubDetailsCache.set(cacheKey, parsed);
 
