@@ -22,11 +22,12 @@ src/
   routes/            # handlers HTTP — só validação + chamada de service
   services/          # lógica de negócio: cache-check → fetch → parse → cache-set
   parsers/           # parse HTML com cheerio → tipos estruturados
+  domain/            # regras de domínio puras (ex: athleteEdit/ — campos editáveis e tipos de campo)
   cache/             # DataCache<T> genérico + instâncias (atletasCache, clubesCache, SessionCache)
   errors/            # AppError, ValidationError, GatewayError
   middleware/        # asyncRoute, auth, errorHandler
   validators/        # funções puras que retornam string|null (null = válido)
-  utils/             # helpers reutilizáveis (text, url, estadoMapper, session, coding)
+  utils/             # helpers reutilizáveis (text, url, estadoMapper, session, coding, keyedLock)
   types/index.ts     # todas as interfaces/tipos do domínio
 ```
 
@@ -37,10 +38,11 @@ src/
 ### Rotas (`src/routes/`)
 
 - Sempre envolvidas em `asyncRoute(async (req, res) => {...})` — nunca `try/catch` manual na rota.
-- Responsabilidade única: validar entrada → chamar service → serializar resposta.
+- Responsabilidade única: validar entrada → chamar service → serializar resposta. Orquestração
+  (vários passos, decisões de negócio) fica no service.
 - Erros de validação: `throw new ValidationError(mensagem)`.
-- Erros de gateway (falha ao comunicar com ZEMPO): `throw new GatewayError(e)`.
-- Erros de domínio já tipados (`AppError`): re-lançar com `if (e instanceof AppError) throw e`.
+- Falhas de comunicação com o ZEMPO já chegam como `GatewayError` (convertidas no `zempoClient`);
+  a rota não precisa traduzir. Qualquer outro erro não tipado vira 500 (bug).
 
 ```ts
 // padrão de rota
@@ -60,7 +62,9 @@ router.get(
 
 - Assinatura: `async function getXxx(opts): Promise<ServiceResult<T>>`.
 - Fluxo fixo: montar `cacheKey` → checar cache → fetch HTML → parse → salvar cache → retornar `{ data, cached }`.
-- Nunca lançar erros HTTP aqui — apenas erros de infraestrutura (`Error` normal).
+- Pode lançar subclasses de `AppError` que representam regras de domínio (`NotFoundError`,
+  `ForbiddenError`, `ValidationError`, `ZempoRejectedError`). Não construir respostas HTTP aqui.
+- Escritas no ZEMPO que reenviam o formulário inteiro devem rodar sob `createKeyedLock()` por ID.
 
 ```ts
 export async function getXxx(
@@ -156,13 +160,17 @@ Erros seguem:
 
 - `SessionCache` gerencia o cookie de sessão (login automático).
 - `zempoClient.fetchPage(url)` detecta sessão expirada e renova automaticamente (1 retry).
-- Nunca usar `fetch` direto para o ZEMPO — sempre passar por `fetchPage`.
+- Nunca usar `fetch` direto para o ZEMPO — sempre `fetchPage` (GET), `postPage` (POST cru) ou
+  `postForm` (POST urlencoded). `postPage` não refaz em erro de rede, para não duplicar escritas.
 
 ---
 
 ## Testes
 
-- Ficam em `src/parsers/__tests__/` e `src/utils/__tests__/`.
+- Ficam em `src/parsers/__tests__/`, `src/utils/__tests__/` e `src/services/__tests__/`
+  (services testados com `jest.mock("../../http/zempoClient")`).
+- Fixtures HTML compartilhadas em `src/parsers/__tests__/fixtures/`.
+- Nunca usar dados pessoais reais (CPF, telefone, e-mail) em fixtures, testes ou comentários.
 - Testar parsers com HTML real (fixtures) ou truncado.
 - Testar validators com entradas válidas/inválidas.
 - Rodar: `npm test`.
