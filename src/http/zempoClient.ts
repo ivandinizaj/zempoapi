@@ -2,6 +2,7 @@ import fetch from "node-fetch";
 import pLimit from "p-limit";
 import sessionCache from "../cache/SessionCache";
 import { isSessionExpiredHtml } from "../utils/session";
+import logger from "../utils/logger";
 
 export const BASE_URL = process.env.ZEMPO_BASE_URL ?? "https://zempo.com.br";
 
@@ -70,7 +71,7 @@ async function fetchWithRetry(url: string): Promise<string> {
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     if (attempt > 0) {
       const backoff = 200 * 2 ** (attempt - 1); // 200ms, 400ms
-      console.warn(
+      logger.warn(
         `[ZempoClient] Tentativa ${attempt + 1}/${MAX_RETRIES + 1} em ${backoff}ms — ${(lastErr as Error).message}`,
       );
       await sleep(backoff);
@@ -91,7 +92,7 @@ export async function fetchPage(url: string): Promise<string> {
       let html = await fetchWithRetry(url);
 
       if (isSessionExpiredHtml(html)) {
-        console.log(`[ZempoClient] Sessão expirada. Renovando...`);
+        logger.info("[ZempoClient] Sessão expirada. Renovando...");
         sessionCache.invalidate();
         html = await get(url);
 

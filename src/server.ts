@@ -94,11 +94,13 @@ app.use((_req, res) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`\n🥋 ZEMPO CBJ API rodando em http://localhost:${PORT}`);
-  console.log(`📊 Status: http://localhost:${PORT}/api/${API_VERSION}/status`);
-  console.log(`📖 Docs:   http://localhost:${PORT}/api/docs`);
-  console.log(
-    `🔑 Auth: ${process.env.API_KEY ? "API Key ativa" : "Sem autenticação (dev mode)"}\n`,
+  logger.info(
+    {
+      status: `http://localhost:${PORT}/api/${API_VERSION}/status`,
+      docs: `http://localhost:${PORT}/api/docs`,
+      auth: process.env.API_KEY ? "API Key ativa" : "Sem autenticação (dev mode)",
+    },
+    `🥋 ZEMPO CBJ API rodando em http://localhost:${PORT}`,
   );
 });
 
