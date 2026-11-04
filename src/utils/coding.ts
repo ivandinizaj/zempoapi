@@ -13,3 +13,11 @@ export function parseClubId(raw: string): string | null {
   const m = raw.match(/^CL0*(\d+)$/i);
   return m ? m[1] : null;
 }
+
+/** Aceita "79588" ou "JU079588" → retorna o ID numérico sem zeros à esquerda (ex: "79588"). */
+export function parseAthleteId(raw: string): string | null {
+  const m = raw.match(/^(?:JU)?(\d+)$/i);
+  if (!m) return null;
+  const id = m[1].replace(/^0+/, "");
+  return id || null;
+}

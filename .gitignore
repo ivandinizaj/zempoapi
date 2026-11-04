@@ -28,3 +28,6 @@ coverage/
 
 # TypeScript cache
 *.tsbuildinfo
+
+# capturas do ZEMPO com dados pessoais reais
+dados-*.md

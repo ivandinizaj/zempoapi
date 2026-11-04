@@ -112,6 +112,77 @@ export interface GetClubDetailsOptions {
   forceRefresh?: boolean;
 }
 
+export interface EditFormOption {
+  value: string;
+  label: string;
+}
+
+/** Par nome/valor exatamente como o navegador enviaria o formulário (ordem e duplicatas preservadas). */
+export interface EditFormEntry {
+  name: string;
+  value: string;
+  isFile: boolean;
+}
+
+/** Dados editáveis do atleta já no formato da API (UF por sigla, cidade/bairro por nome). */
+export interface AthleteEditData {
+  peso: string | null;
+  nacionalidade: string | null;
+  email: string | null;
+  celular: string | null;
+  telefone: string | null;
+  responsavel: string | null;
+  responsavelParentesco: string | null;
+  emailTecnico: string | null;
+  cpf: string | null;
+  rg: string | null;
+  rgOrgaoExpedidor: string | null;
+  rgEstadoEmissor: string | null;
+  rgDataExpedicao: string | null;
+  passaporte: string | null;
+  passaporteValidade: string | null;
+  passaporteOrgaoEmissor: string | null;
+  passaporteDataExpedicao: string | null;
+  cep: string | null;
+  endereco: string | null;
+  numero: string | null;
+  complemento: string | null;
+  estado: string | null;
+  cidade: string | null;
+  bairro: string | null;
+}
+
+/** O que a API expõe do formulário de edição (sem o payload interno). */
+export interface AthleteEditView {
+  id: string;
+  nomeCompleto: string | null;
+  dados: AthleteEditData;
+}
+
+/** Estado interno do formulário de edição — nunca serializar direto na resposta. */
+export interface AthleteEditForm {
+  id: string | null;
+  nomeCompleto: string | null;
+  dados: AthleteEditData;
+  /** IDs ZEMPO dos selects dependentes, usados para resolver cidade/bairro por nome. */
+  cidadeId: string | null;
+  /** `name` dos campos marcados como obrigatórios no formulário. */
+  obrigatorios: string[];
+  /** Payload completo do formulário, reenviado no POST de atualização. */
+  entries: EditFormEntry[];
+}
+
+/** Alterações já normalizadas ("" = limpar o campo). */
+export type AthleteUpdateInput = Partial<Record<keyof AthleteEditData, string>>;
+
+export interface AthleteUpdateResult {
+  sucesso: boolean;
+  mensagem: string | null;
+  /** Campos enviados cujo valor não foi refletido no formulário retornado pelo ZEMPO. */
+  naoAplicados: string[];
+  dados: AthleteEditData | null;
+}
+
 export interface Localidade {
   id: string;
   nome: string;

@@ -34,7 +34,7 @@ const corsOrigin = process.env.CORS_ORIGIN ?? (process.env.API_KEY ? "" : "*");
 app.use((req, res, next) => {
   if (corsOrigin) res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Headers", "X-API-Key, Content-Type");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
   if (req.method === "OPTIONS") {
     res.sendStatus(204);
     return;
@@ -51,6 +51,8 @@ app.get("/", (_req, res) => {
     endpoints: {
       [`GET /api/${API_VERSION}/atleta/:id`]: "Busca atleta por ID numérico",
       [`GET /api/${API_VERSION}/atleta/codigo/:codigo`]: "Busca atleta por código (ex: JU079588)",
+      [`GET /api/${API_VERSION}/atleta/:id/editar`]: "Dados editáveis atuais do atleta",
+      [`PATCH /api/${API_VERSION}/atleta/:id`]: "Atualiza dados cadastrais do atleta no ZEMPO",
       [`GET /api/${API_VERSION}/localidades/estados/:uf/cidades`]: "Cidades de um estado",
       [`GET /api/${API_VERSION}/localidades/cidades/:id/bairros`]: "Bairros de uma cidade",
       [`GET /api/${API_VERSION}/clubes`]: "Lista clubes com filtro opcional por estado",
