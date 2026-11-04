@@ -42,3 +42,9 @@ export function siglaToFiltro(sigla: string): number | null {
 export function getValidSiglas(): string[] {
   return Object.keys(ESTADO_FILTRO);
 }
+
+/** Inverso de siglaToFiltro: 17 → "PE". Os IDs de UF do ZEMPO são os mesmos em filtros e formulários. */
+export function filtroToSigla(id: number | string): string | null {
+  const n = Number(id);
+  return Object.keys(ESTADO_FILTRO).find((s) => ESTADO_FILTRO[s] === n) ?? null;
+}

@@ -2,6 +2,8 @@ import fetch from "node-fetch";
 import pLimit from "p-limit";
 import sessionCache from "../cache/SessionCache";
 import { isSessionExpiredHtml } from "../utils/session";
+import logger from "../utils/logger";
+import { GatewayError } from "../errors/AppError";
 
 export const BASE_URL = process.env.ZEMPO_BASE_URL ?? "https://zempo.com.br";
 
@@ -39,15 +41,25 @@ function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function get(url: string): Promise<string> {
+export interface PostBody {
+  body: Buffer | string;
+  contentType: string;
+}
+
+async function request(url: string, post?: PostBody): Promise<string> {
   const cookie = await sessionCache.getCookie();
   const controller = new AbortController();
   const timerId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
   try {
     const response = await fetch(url, {
-      method: "GET",
-      headers: { Cookie: cookie, ...BROWSER_HEADERS },
+      method: post ? "POST" : "GET",
+      headers: {
+        Cookie: cookie,
+        ...BROWSER_HEADERS,
+        ...(post ? { "Content-Type": post.contentType } : {}),
+      },
+      body: post?.body,
       signal: controller.signal,
     });
 
@@ -57,7 +69,10 @@ async function get(url: string): Promise<string> {
 
     const buffer = await response.buffer();
     const head = buffer.slice(0, 1024).toString("ascii");
-    const charsetMatch = head.match(/charset=([\w-]+)/i);
+    // fragmentos AJAX (ex: retorno_cidades.php) não têm <meta>, só o header
+    const charsetMatch =
+      response.headers.get("content-type")?.match(/charset=([\w-]+)/i) ??
+      head.match(/charset=([\w-]+)/i);
     const charset = charsetMatch ? charsetMatch[1] : "utf-8";
     return new TextDecoder(charset).decode(buffer);
   } finally {
@@ -70,13 +85,13 @@ async function fetchWithRetry(url: string): Promise<string> {
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     if (attempt > 0) {
       const backoff = 200 * 2 ** (attempt - 1); // 200ms, 400ms
-      console.warn(
+      logger.warn(
         `[ZempoClient] Tentativa ${attempt + 1}/${MAX_RETRIES + 1} em ${backoff}ms — ${(lastErr as Error).message}`,
       );
       await sleep(backoff);
     }
     try {
-      return await get(url);
+      return await request(url);
     } catch (err) {
       if (!isRetryable(err)) throw err;
       lastErr = err;
@@ -85,25 +100,57 @@ async function fetchWithRetry(url: string): Promise<string> {
   throw lastErr;
 }
 
-export async function fetchPage(url: string): Promise<string> {
+/** Se o ZEMPO devolver a tela de login, renova a sessão e refaz o envio uma única vez. */
+async function withSessionRenewal(send: () => Promise<string>): Promise<string> {
+  const html = await send();
+  if (!isSessionExpiredHtml(html)) return html;
+
+  logger.info("[ZempoClient] Sessão expirada. Renovando...");
+  sessionCache.invalidate();
+  const retried = await send();
+  if (isSessionExpiredHtml(retried)) {
+    throw new Error("Não foi possível autenticar no ZEMPO após renovar sessão");
+  }
+  return retried;
+}
+
+/**
+ * Executa no limite de concorrência e converte qualquer falha em GatewayError (502):
+ * services e rotas não precisam traduzir erros de comunicação com o ZEMPO.
+ */
+function schedule(send: () => Promise<string>): Promise<string> {
   return limit(async () => {
     try {
-      let html = await fetchWithRetry(url);
-
-      if (isSessionExpiredHtml(html)) {
-        console.log(`[ZempoClient] Sessão expirada. Renovando...`);
-        sessionCache.invalidate();
-        html = await get(url);
-
-        if (isSessionExpiredHtml(html)) {
-          throw new Error("Não foi possível autenticar no ZEMPO após renovar sessão");
-        }
-      }
-
-      return html;
+      return await withSessionRenewal(send);
+    } catch (err) {
+      throw new GatewayError(err);
     } finally {
       // mantém o slot ocupado por DELAY_MS para não sobrecarregar o ZEMPO
       await sleep(DELAY_MS);
     }
+  });
+}
+
+export function fetchPage(url: string): Promise<string> {
+  return schedule(() => fetchWithRetry(url));
+}
+
+/**
+ * POST autenticado no ZEMPO (ex: submit de formulário). Sem retry em erro de rede/5xx
+ * para não reenviar uma escrita; só refaz uma vez se a sessão tiver expirado,
+ * caso em que o ZEMPO não processou o envio.
+ */
+export function postPage(url: string, post: PostBody): Promise<string> {
+  return schedule(() => request(url, post));
+}
+
+/** POST `application/x-www-form-urlencoded`, como os endpoints AJAX do ZEMPO esperam. */
+export function postForm(
+  url: string,
+  params: Record<string, string> | URLSearchParams,
+): Promise<string> {
+  return postPage(url, {
+    body: new URLSearchParams(params).toString(),
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
   });
 }

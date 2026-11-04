@@ -1,13 +1,8 @@
 import { Router } from "express";
 import { getClubes } from "../services/clubsService";
 import { getClubDetails } from "../services/clubDetailsService";
-import {
-  validatePagina,
-  validateOrdem,
-  validateFiltroEstado,
-  validateClubId,
-} from "../validators";
-import { AppError, GatewayError, ValidationError } from "../errors/AppError";
+import { validatePagina, validateOrdem, validateFiltroEstado, validateClubId } from "../validators";
+import { ValidationError } from "../errors/AppError";
 import { asyncRoute } from "../middleware/asyncRoute";
 import { siglaToFiltro } from "../utils/estadoMapper";
 
@@ -91,30 +86,23 @@ router.get(
       if (filtroErr) throw new ValidationError(filtroErr);
     }
 
-    const filtroNumerico = filtro
-      ? (siglaToFiltro(filtro) ?? undefined)
-      : undefined;
+    const filtroNumerico = filtro ? (siglaToFiltro(filtro) ?? undefined) : undefined;
     const forceRefresh = req.query["refresh"] === "true";
 
-    try {
-      const { data, cached, _parsedAt } = await getClubes({
-        filtro: filtroNumerico,
-        ordem,
-        pagina,
-        forceRefresh,
-      });
-      res.json({
-        success: true,
-        _cached: cached,
-        _parsedAt,
-        pagina: data.pagina,
-        total: data.total,
-        data: data.clubes,
-      });
-    } catch (e) {
-      if (e instanceof AppError) throw e;
-      throw new GatewayError(e);
-    }
+    const { data, cached, _parsedAt } = await getClubes({
+      filtro: filtroNumerico,
+      ordem,
+      pagina,
+      forceRefresh,
+    });
+    res.json({
+      success: true,
+      _cached: cached,
+      _parsedAt,
+      pagina: data.pagina,
+      total: data.total,
+      data: data.clubes,
+    });
   }),
 );
 
@@ -171,18 +159,13 @@ router.get(
 
     const forceRefresh = req.query["refresh"] === "true";
 
-    try {
-      const { data, cached, _parsedAt } = await getClubDetails(id, { forceRefresh });
-      res.json({
-        success: true,
-        _cached: cached,
-        _parsedAt,
-        data,
-      });
-    } catch (e) {
-      if (e instanceof AppError) throw e;
-      throw new GatewayError(e);
-    }
+    const { data, cached, _parsedAt } = await getClubDetails(id, { forceRefresh });
+    res.json({
+      success: true,
+      _cached: cached,
+      _parsedAt,
+      data,
+    });
   }),
 );
 

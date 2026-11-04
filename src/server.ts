@@ -34,7 +34,7 @@ const corsOrigin = process.env.CORS_ORIGIN ?? (process.env.API_KEY ? "" : "*");
 app.use((req, res, next) => {
   if (corsOrigin) res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Headers", "X-API-Key, Content-Type");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
   if (req.method === "OPTIONS") {
     res.sendStatus(204);
     return;
@@ -51,6 +51,10 @@ app.get("/", (_req, res) => {
     endpoints: {
       [`GET /api/${API_VERSION}/atleta/:id`]: "Busca atleta por ID numérico",
       [`GET /api/${API_VERSION}/atleta/codigo/:codigo`]: "Busca atleta por código (ex: JU079588)",
+      [`GET /api/${API_VERSION}/atleta/:id/editar`]: "Dados editáveis atuais do atleta",
+      [`PATCH /api/${API_VERSION}/atleta/:id`]: "Atualiza dados cadastrais do atleta no ZEMPO",
+      [`GET /api/${API_VERSION}/localidades/estados/:uf/cidades`]: "Cidades de um estado",
+      [`GET /api/${API_VERSION}/localidades/cidades/:id/bairros`]: "Bairros de uma cidade",
       [`GET /api/${API_VERSION}/clubes`]: "Lista clubes com filtro opcional por estado",
       [`GET /api/${API_VERSION}/status`]: "Status da API, sessão e cache",
       [`POST /api/${API_VERSION}/cache/invalidate/:id`]: "Invalida cache de um atleta",
@@ -94,11 +98,13 @@ app.use((_req, res) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`\n🥋 ZEMPO CBJ API rodando em http://localhost:${PORT}`);
-  console.log(`📊 Status: http://localhost:${PORT}/api/${API_VERSION}/status`);
-  console.log(`📖 Docs:   http://localhost:${PORT}/api/docs`);
-  console.log(
-    `🔑 Auth: ${process.env.API_KEY ? "API Key ativa" : "Sem autenticação (dev mode)"}\n`,
+  logger.info(
+    {
+      status: `http://localhost:${PORT}/api/${API_VERSION}/status`,
+      docs: `http://localhost:${PORT}/api/docs`,
+      auth: process.env.API_KEY ? "API Key ativa" : "Sem autenticação (dev mode)",
+    },
+    `🥋 ZEMPO CBJ API rodando em http://localhost:${PORT}`,
   );
 });
 

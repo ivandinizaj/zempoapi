@@ -13,6 +13,20 @@ const options: swaggerJsdoc.Options = {
       contact: { email: "ivandinizaj@gmail.com" },
     },
     servers: [{ url: "/api/v1", description: "Versão atual" }],
+    tags: [
+      {
+        name: "Atletas",
+        description: "Consulta de atletas cadastrados no ZEMPO por ID numérico ou código público (ex: JU079588).",
+      },
+      {
+        name: "Clubes",
+        description: "Listagem e detalhes de clubes filiados à CBJ, com filtros por estado e paginação.",
+      },
+      {
+        name: "Admin",
+        description: "Gerenciamento de cache e sessão ZEMPO. Requer autenticação via `X-API-Key` quando configurada.",
+      },
+    ],
     components: {
       securitySchemes: {
         ApiKeyHeader: { type: "apiKey", in: "header", name: "X-API-Key" },

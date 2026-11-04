@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction, RequestHandler } from "express";
+import type { Request, Response, RequestHandler } from "express";
 
 type AsyncHandler = (req: Request, res: Response) => Promise<void>;
 
