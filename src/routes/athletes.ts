@@ -175,8 +175,8 @@ function parseIdParam(rawId: string): string {
  * @openapi
  * /atleta/{id}/editar:
  *   get:
- *     tags: [Atletas]
- *     summary: Dados editáveis atuais do atleta
+ *     tags: [Edição de atletas]
+ *     summary: Consultar dados editáveis do atleta
  *     description: Retorna os valores atuais no mesmo formato aceito por `PATCH /atleta/{id}`.
  *     parameters:
  *       - in: path
@@ -226,8 +226,8 @@ router.get(
  * @openapi
  * /atleta/{id}:
  *   patch:
- *     tags: [Atletas]
- *     summary: Atualiza dados cadastrais do atleta no ZEMPO
+ *     tags: [Edição de atletas]
+ *     summary: Atualizar cadastro do atleta no ZEMPO
  *     description: |
  *       Envie apenas os campos a alterar; os demais são reenviados ao ZEMPO com o valor atual.
  *       Sucesso = o ZEMPO exibiu "Atleta atualizado com sucesso!". `naoAplicados` lista campos

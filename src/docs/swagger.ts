@@ -19,6 +19,10 @@ const options: swaggerJsdoc.Options = {
         description: "Consulta de atletas cadastrados no ZEMPO por ID numérico ou código público (ex: JU079588).",
       },
       {
+        name: "Edição de atletas",
+        description: "Consulta os campos editáveis e atualiza o cadastro do atleta no ZEMPO. Requer permissão da conta configurada na API.",
+      },
+      {
         name: "Clubes",
         description: "Listagem e detalhes de clubes filiados à CBJ, com filtros por estado e paginação.",
       },
