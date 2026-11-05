@@ -147,6 +147,60 @@ curl http://localhost:3000/api/atleta/codigo/JU079588 \
 
 ---
 
+### Edição de cadastro do atleta
+
+A edição é feita diretamente no cadastro do ZEMPO e exige que a conta configurada
+na API tenha permissão para editar o atleta. Os endpoints estão disponíveis em
+`/api/v1`:
+
+#### `GET /api/v1/atleta/:id/editar`
+
+Consulta os valores atuais dos campos editáveis. O `:id` pode ser o ID numérico
+interno ou o código público do atleta.
+
+```bash
+curl http://localhost:3000/api/v1/atleta/79588/editar \
+  -H "X-API-Key: minha_chave_secreta_aqui"
+```
+
+#### `PATCH /api/v1/atleta/:id`
+
+Atualiza os campos enviados. O corpo deve ser JSON e conter **somente os campos
+que deseja alterar**; os demais valores atuais são preservados.
+
+```bash
+curl -X PATCH http://localhost:3000/api/v1/atleta/79588 \
+  -H "X-API-Key: minha_chave_secreta_aqui" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "atleta@example.com",
+    "celular": "81999990000",
+    "peso": 81.5
+  }'
+```
+
+Campos aceitos:
+
+| Grupo | Campos | Observações |
+|---|---|---|
+| Básicos | `peso`, `nacionalidade`, `email`, `celular`, `telefone`, `responsavel`, `responsavelParentesco`, `emailTecnico` | O peso aceita ponto ou vírgula e a categoria é recalculada pelo ZEMPO. |
+| Documentos | `cpf`, `rg`, `rgOrgaoExpedidor`, `rgEstadoEmissor`, `rgDataExpedicao`, `passaporte`, `passaporteValidade`, `passaporteOrgaoEmissor`, `passaporteDataExpedicao` | CPF e datas são validados; datas aceitam `dd/mm/aaaa` ou `aaaa-mm-dd`. |
+| Endereço | `cep`, `endereco`, `numero`, `complemento`, `estado`, `cidade`, `bairro` | CEP aceita com ou sem máscara. Estado deve ser a sigla da UF; cidade e bairro podem ser nomes ou IDs do ZEMPO. |
+
+Use `null` para limpar um campo opcional. Campos obrigatórios não podem ser
+limpos. Ao alterar `estado`, envie também `cidade` e `bairro`; ao alterar
+`cidade`, envie também `bairro`. Consulte as cidades e bairros nos endpoints
+`GET /api/v1/localidades/estados/:uf/cidades` e
+`GET /api/v1/localidades/cidades/:id/bairros`.
+
+A resposta informa se o ZEMPO confirmou a alteração (`data.sucesso`), a
+mensagem recebida e os campos não aplicados (`data.naoAplicados`). Um `403`
+indica falta de permissão da conta configurada; um `422` indica que o ZEMPO não
+confirmou a atualização. A documentação interativa também está disponível em
+`http://localhost:3000/api/docs`.
+
+---
+
 ### `GET /api/clubes`
 
 Lista clubes cadastrados no ZEMPO com suporte a filtro por estado, ordenação e paginação.
