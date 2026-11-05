@@ -108,3 +108,34 @@ describe("parseClubesData - sem resultados (empty)", () => {
     expect(result.total).toBe(0);
   });
 });
+
+describe("parseClubesData - linhas malformadas", () => {
+  const linha = (tds: string[]) =>
+    `<tr onmouseover="setPointer(this)">${tds.map((t) => `<td>${t}</td>`).join("")}</tr>`;
+
+  test("ignora linhas com menos de 7 colunas e células vazias viram null", () => {
+    const html = `<table>
+      ${linha(["", "CL1", "Clube   Um", "", "", "FPJU", "Pernambuco"])}
+      ${linha(["", "CL2", "incompleto"])}
+    </table>`;
+
+    expect(parseClubesData(html).clubes).toEqual([
+      {
+        foto: null,
+        codigo: "CL1",
+        nome: "Clube Um",
+        telefone: null,
+        email: null,
+        federacao: "FPJU",
+        estado: "Pernambuco",
+      },
+    ]);
+  });
+
+  test("foto relativa é resolvida com o baseUrl informado", () => {
+    const html = `<table>${linha(['<img src="/arquivos/clubes/x.jpg">', "CL1", "A", "", "", "F", "E"])}</table>`;
+    expect(parseClubesData(html, "https://zempo.test").clubes[0].foto).toBe(
+      "https://zempo.test/arquivos/clubes/x.jpg",
+    );
+  });
+});

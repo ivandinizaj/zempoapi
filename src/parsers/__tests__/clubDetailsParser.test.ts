@@ -113,3 +113,36 @@ describe("parseClubDetails - CL002294 (4º Bravo Lutas)", () => {
     expect(result._parsedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
   });
 });
+
+describe("parseClubDetails - página sem dados", () => {
+  test("todos os campos de domínio são null", () => {
+    const { _parsedAt, ...campos } = parseClubDetails("<html><body></body></html>");
+
+    expect(_parsedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+    for (const [campo, valor] of Object.entries(campos)) {
+      expect([campo, valor]).toEqual([campo, null]);
+    }
+  });
+});
+
+describe("parseClubDetails - campos derivados", () => {
+  const row = (label: string, valor: string) =>
+    `<tr><td class="azul">${label}</td><td>${valor}</td></tr>`;
+
+  test.each([
+    ["Sim", true],
+    ["sim (desde 2010)", true],
+    ["Não", false],
+  ])("federado %p → %p", (valor, esperado) => {
+    expect(parseClubDetails(`<table>${row("Federado", valor)}</table>`).federado).toBe(esperado);
+  });
+
+  test("sigla só com o hint do ZEMPO vira null", () => {
+    expect(parseClubDetails(`<table>${row("Sigla", "Abreviação")}</table>`).sigla).toBeNull();
+  });
+
+  test("label sem a classe azul é ignorado (evita casar texto comum)", () => {
+    const html = `<table><tr><td>Email</td><td>nao@deveria.casar</td></tr></table>`;
+    expect(parseClubDetails(html).email).toBeNull();
+  });
+});
