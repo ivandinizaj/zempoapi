@@ -67,9 +67,7 @@ router.get(
 - Escritas no ZEMPO que reenviam o formulário inteiro devem rodar sob `createKeyedLock()` por ID.
 
 ```ts
-export async function getXxx(
-  opts: XxxOptions = {},
-): Promise<ServiceResult<XxxType>> {
+export async function getXxx(opts: XxxOptions = {}): Promise<ServiceResult<XxxType>> {
   const cacheKey = `...`;
   if (!opts.forceRefresh) {
     const cached = xxxCache.get(cacheKey);
@@ -173,4 +171,7 @@ Erros seguem:
 - Nunca usar dados pessoais reais (CPF, telefone, e-mail) em fixtures, testes ou comentários.
 - Testar parsers com HTML real (fixtures) ou truncado.
 - Testar validators com entradas válidas/inválidas.
-- Rodar: `npm test`.
+- Services: mockar `http/zempoClient` e o parser; testar URL enviada, chave de cache e quando **não** cachear.
+- Rotas: `routes/__tests__/routes.test.ts` sobe o router real + `errorHandler` (porta 0) com services mockados.
+- Módulos com estado/env no load (`zempoClient`, `SessionCache`): recarregar com `jest.isolateModules`.
+- Rodar: `npm test` · cobertura (todos os arquivos de `src/`): `npm run test:coverage`.
