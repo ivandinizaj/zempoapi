@@ -10,7 +10,8 @@
     "test": "jest",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
-    "format": "prettier --write 'src/**/*.ts'"
+    "format": "prettier --write 'src/**/*.ts'",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -51,6 +52,13 @@
     "testEnvironment": "node",
     "testMatch": [
       "**/__tests__/**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/server.ts",
+      "!src/docs/**",
+      "!src/types/**",
+      "!src/**/__tests__/**"
     ]
   }
 }
